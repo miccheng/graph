@@ -1,2 +1,5 @@
-package com.example.graph.shortcut;public interface Shortcut {
+package com.example.graph.shortcut;
+
+public interface Shortcut {
+    public int[] getCoordinates();
 }
