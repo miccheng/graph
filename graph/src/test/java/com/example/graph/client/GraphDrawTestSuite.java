@@ -36,67 +36,57 @@ public class GraphDrawTestSuite {
         MyCanvas.initInstance(4, 3);
     }
 
+    @Before
+    public void resetCanvas() {
+        MyCanvas.getInstance().resetGrids();
+    }
+
     @Test
     public void testRectangle() {
-        Grid[][] expectedGrids = {
-                {new Dash(), new Dash(), new Dash(), new Dash(), new Dash(), new Dash()},
-                {new Bar(), new Cross(), new Cross(), new Vacant(1, 3), new Vacant(1, 4), new Bar()},
-                {new Bar(), new Cross(), new Cross(), new Vacant(2, 3), new Vacant(2, 4), new Bar()},
-                {new Bar(), new Vacant(3, 1), new Vacant(3, 2), new Cross(), new Cross(), new Bar()},
-                {new Dash(), new Dash(), new Dash(), new Dash(), new Dash(), new Dash()}
-        };
-        Grid[][] grids = MyCanvas.getInstance().getGrids();
-
         RShortcut rShortcut = new RShortcut(1, 1, 2, 2);
         MyGraphics2DApp app = new MyGraphics2DApp(rShortcut);
         app.executeCommand();
 
         Grid[][] result = MyCanvas.getInstance().getGrids();
         String actual = render.displayGrids(result);
-        String expected = render.displayGrids(expectedGrids);
+        String expected = "------\n" +
+                          "|xx  |\n" +
+                          "|xx  |\n" +
+                          "|    |\n" +
+                          "------\n";
         assertEquals(expected, actual);
     }
 
     @Test
     public void testVerticalLine() throws Exception {
-        Grid[][] expectedGrids = {
-                {new Dash(), new Dash(), new Dash(), new Dash(), new Dash(), new Dash()},
-                {new Bar(), new Cross(), new Cross(), new Cross(), new Vacant(1, 4), new Bar()},
-                {new Bar(), new Cross(), new Cross(), new Cross(), new Vacant(2, 4), new Bar()},
-                {new Bar(), new Vacant(3, 1), new Vacant(3, 2), new Cross(), new Cross(), new Bar()},
-                {new Dash(), new Dash(), new Dash(), new Dash(), new Dash(), new Dash()}
-        };
-        Grid[][] grids = MyCanvas.getInstance().getGrids();
-
         LShortcut lShortcut = new LShortcut(3, 1, 3, 2);
         MyGraphics2DApp app = new MyGraphics2DApp(lShortcut);
         app.executeCommand();
 
         Grid[][] result = MyCanvas.getInstance().getGrids();
         String actual = render.displayGrids(result);
-        String expected = render.displayGrids(expectedGrids);
+        String expected = "------\n" +
+                          "|  x |\n" +
+                          "|  x |\n" +
+                          "|    |\n" +
+                          "------\n";
         assertEquals(expected, actual);
     }
 
 
     @Test
     public void testHorizontalLine() throws Exception {
-        Grid[][] expectedGrids = {
-                {new Dash(), new Dash(), new Dash(), new Dash(), new Dash(), new Dash()},
-                {new Bar(), new Vacant(1,1), new Vacant(1,2), new Vacant(1,3), new Vacant(1, 4), new Bar()},
-                {new Bar(), new Vacant(2,1), new Vacant(2,2), new Vacant(2,3), new Vacant(2, 4), new Bar()},
-                {new Bar(), new Vacant(3, 1), new Vacant(3, 2), new Cross(), new Cross(), new Bar()},
-                {new Dash(), new Dash(), new Dash(), new Dash(), new Dash(), new Dash()}
-        };
-        Grid[][] grids = MyCanvas.getInstance().getGrids();
-
         LShortcut lShortcut = new LShortcut(3, 3, 4, 3);
         MyGraphics2DApp app = new MyGraphics2DApp(lShortcut);
         app.executeCommand();
 
         Grid[][] result = MyCanvas.getInstance().getGrids();
         String actual = render.displayGrids(result);
-        String expected = render.displayGrids(expectedGrids);
+        String expected = "------\n" +
+                          "|    |\n" +
+                          "|    |\n" +
+                          "|  xx|\n" +
+                          "------\n";
         assertEquals(expected, actual);
     }
 
