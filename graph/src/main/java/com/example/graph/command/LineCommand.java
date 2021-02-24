@@ -14,8 +14,8 @@ public class LineCommand extends Command{
     public LineCommand(int coordinates[]) {
         this.x1 = coordinates[0];
         this.y1 = coordinates[1];
-        this.x2 = coordinates[3];
-        this.y2 = coordinates[4];
+        this.x2 = coordinates[2];
+        this.y2 = coordinates[3];
         int a=x2-x1;
         int b=y2-y1;
         this.length = (a>b)?a:b;
@@ -34,10 +34,12 @@ public class LineCommand extends Command{
         if (x1 == x2) {
             while (i <= y2) {
                 canvas.getGrids()[i][j] = new Cross();
+                i++;
             }
         } else {
             while (j <= x2) {
                 canvas.getGrids()[i][j] = new Cross();
+                j++;
             }
         }
     }

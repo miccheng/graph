@@ -41,8 +41,8 @@ public class BucketFillCommand extends Command{
         while(!queue.isEmpty()){
             Grid current = queue.remove();
             Vacant vacant = (Vacant) current;
-            y = vacant.getColumn();
-            x = vacant.getRow();
+            y = vacant.getRow();
+            x = vacant.getColumn();
 
             try {
                 canvas.getGrids()[y][x]=fillShape.newInstance();
@@ -62,7 +62,7 @@ public class BucketFillCommand extends Command{
                 queue.add(canvas.getGrids()[y-1][x]);//go up
                 ((Vacant) canvas.getGrids()[y-1][x]).setVisited(true);
             }
-            if(y+1>row && canvas.getGrids()[y+1][x] instanceof Vacant && ((Vacant) canvas.getGrids()[y+1][x]).isVisited()==false){
+            if(y+1<=row && canvas.getGrids()[y+1][x] instanceof Vacant && ((Vacant) canvas.getGrids()[y+1][x]).isVisited()==false){
                 queue.add(canvas.getGrids()[y+1][x]);//go down
                 ((Vacant) canvas.getGrids()[y+1][x]).setVisited(true);
             }

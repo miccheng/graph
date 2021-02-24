@@ -13,8 +13,8 @@ public class RectangleCommand extends Command{
     public RectangleCommand(int coordinates[]) {
         this.x = coordinates[0];
         this.y = coordinates[1];
-        this.width = coordinates[3] -coordinates[1];
-        this.height = coordinates[2]-coordinates[0];
+        this.height = coordinates[3] -coordinates[1];
+        this.width = coordinates[2]-coordinates[0];
     }
 
     @Override
@@ -30,7 +30,7 @@ public class RectangleCommand extends Command{
     private void draw() {
         int i, j;
         for (i = y; i <= y + height; i++) {
-            for (j = x; j < x + width; j++) {
+            for (j = x; j <= x + width; j++) {
                 canvas.getGrids()[i][j] = new Cross();
             }
         }
