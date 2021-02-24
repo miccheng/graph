@@ -25,7 +25,13 @@ public Command command;
         } else if(shortcut instanceof RShortcut){
             this.command=new RectangleCommand(shortcut.getCoordinates());
         }else if(shortcut instanceof BShortcut){
-           this.command=new BucketFillCommand(shortcut.getCoordinates(), ((BShortcut) shortcut).getFillShape());
+            this.command=new BucketFillCommand(shortcut.getCoordinates(), ((BShortcut) shortcut).getFillShape());
+        }else if(shortcut instanceof QShortcut){
+            this.command=new QuitCommand();
+        }else{
+            System.out.println("Unknow operation: don't know what to do, therefore not to do anything");
+            return;
         }
+
     }
 }
