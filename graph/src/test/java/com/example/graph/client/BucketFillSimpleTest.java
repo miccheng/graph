@@ -17,8 +17,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class BucketFillSimple {
+public class BucketFillSimpleTest {
     @Autowired
     GridRender render;
 
@@ -29,7 +28,7 @@ public class BucketFillSimple {
     }
 
     @Test
-    public void fillAround(){
+    public void testFillAround(){
         Grid[][] expectedGrids = {
                 {new Dash(), new Dash(), new Dash(), new Dash(), new Dash(), new Dash(),new Dash(), new Dash(), new Dash(), new Dash()},
                 {new Bar(),new Circle(), new Circle(),new Circle(), new Circle(), new Circle(),new Circle(),new Circle(),new Circle(),new Bar()},

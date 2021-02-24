@@ -17,8 +17,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class BucketFillTests {
+public class BucketFillComprehensiveTest {
     @Autowired
     GridRender render;
 
