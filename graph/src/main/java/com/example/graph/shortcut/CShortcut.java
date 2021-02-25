@@ -1,5 +1,6 @@
 package com.example.graph.shortcut;
 
+
 public class CShortcut implements Shortcut{
     public int width;
     public int height;

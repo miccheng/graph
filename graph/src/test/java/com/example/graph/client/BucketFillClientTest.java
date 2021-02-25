@@ -27,16 +27,12 @@ public class BucketFillClientTest {
 
     @Test
     public void testBucketFill() throws Exception {
-        {
-            Grid[][] expectedGrids = {
-                    {new Dash(), new Dash(), new Dash(), new Dash(), new Dash(), new Dash(),new Dash(), new Dash(), new Dash(), new Dash(),new Dash(), new Dash(), new Dash(), new Dash(), new Dash(), new Dash(),new Dash(), new Dash(), new Dash(), new Dash(),new Dash(), new Dash() },
-                    {new Bar(), new Circle(), new Circle(),new Circle(),new Circle(), new Circle(),new Circle(),new Circle(), new Circle(),new Circle(),new Circle(), new Circle(),new Circle(), new Circle(), new Cross(), new Cross(), new Cross(),new Cross(),new Cross(),new Circle(),new Circle(),new Bar()},
-                    {new Bar(),new Cross(), new Cross(),new Cross(),new Cross(), new Cross(),new Cross(),new Circle(),new Circle(),new Circle(),new Circle(),new Circle(),new Circle(),new Circle(),new Cross(),new Cross(),new Cross(), new Cross(),new Cross(),new Circle(),new Circle(), new Bar()},
-                    {new Bar(),new Vacant(3,1), new Vacant(3,2),new Vacant(3,3),new Vacant(3,4), new Vacant(3,5),new Cross(),new Circle(), new Circle(),new Circle(),new Circle(),new Circle(),new Circle(),new Circle(),new Cross(),new Cross(), new Cross(), new Cross(),new Cross(),new Circle(), new Circle(),new Bar()},
-                    {new Bar(),new Vacant(4,1), new Vacant(4,2),new Vacant(4,3),new Vacant(4,4), new Vacant(4,5),new Cross(), new Circle(), new Circle(),new Circle(), new Circle(), new Circle(),new Circle(),new Circle(), new Circle(),new Circle(), new Circle(),new Circle(), new Circle(),new Circle(), new Circle(), new Bar()},
-                    {new Dash(), new Dash(), new Dash(), new Dash(), new Dash(), new Dash(),new Dash(), new Dash(), new Dash(), new Dash(),new Dash(), new Dash(), new Dash(), new Dash(), new Dash(), new Dash(),new Dash(), new Dash(), new Dash(), new Dash(),new Dash(), new Dash() },
-            };
-            Grid[][] grids = MyCanvas.getInstance().getGrids();
+            String expected = "----------------------\n" +
+                    "|oooooooooooooxxxxxoo|\n" +
+                    "|xxxxxxoooooooxxxxxoo|\n" +
+                    "|     xoooooooxxxxxoo|\n" +
+                    "|     xoooooooooooooo|\n" +
+                     "----------------------";
 
             RShortcut rShortcut = new RShortcut(14, 1, 18, 3);
             MyGraphics2DApp app = new MyGraphics2DApp(rShortcut);
@@ -56,9 +52,7 @@ public class BucketFillClientTest {
 
             Grid[][] result = MyCanvas.getInstance().getGrids();
             String actual = render.displayGrids(result);
-            String expected = render.displayGrids(expectedGrids);
             assertEquals(expected, actual);
-        }
     }
 
 }

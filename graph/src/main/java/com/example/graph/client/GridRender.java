@@ -12,7 +12,7 @@ public class GridRender {
                 strBuilder.append(grids[i][j]);
             }
             System.out.println();
-            strBuilder.append("\n");
+            if (i!=grids.length -1 ) strBuilder.append("\n");
         }
         System.out.println("my stringbuilder"+"\n"+strBuilder.toString());
         return strBuilder.toString();

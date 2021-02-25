@@ -45,7 +45,6 @@ public class GraphDrawTestSuite {
                 {new Bar(), new Vacant(3, 1), new Vacant(3, 2), new Cross(), new Cross(), new Bar()},
                 {new Dash(), new Dash(), new Dash(), new Dash(), new Dash(), new Dash()}
         };
-        Grid[][] grids = MyCanvas.getInstance().getGrids();
 
         RShortcut rShortcut = new RShortcut(1, 1, 2, 2);
         MyGraphics2DApp app = new MyGraphics2DApp(rShortcut);
@@ -66,7 +65,6 @@ public class GraphDrawTestSuite {
                 {new Bar(), new Vacant(3, 1), new Vacant(3, 2), new Cross(), new Cross(), new Bar()},
                 {new Dash(), new Dash(), new Dash(), new Dash(), new Dash(), new Dash()}
         };
-        Grid[][] grids = MyCanvas.getInstance().getGrids();
 
         LShortcut lShortcut = new LShortcut(3, 1, 3, 2);
         MyGraphics2DApp app = new MyGraphics2DApp(lShortcut);
@@ -88,7 +86,6 @@ public class GraphDrawTestSuite {
                 {new Bar(), new Vacant(3, 1), new Vacant(3, 2), new Cross(), new Cross(), new Bar()},
                 {new Dash(), new Dash(), new Dash(), new Dash(), new Dash(), new Dash()}
         };
-        Grid[][] grids = MyCanvas.getInstance().getGrids();
 
         LShortcut lShortcut = new LShortcut(3, 3, 4, 3);
         MyGraphics2DApp app = new MyGraphics2DApp(lShortcut);

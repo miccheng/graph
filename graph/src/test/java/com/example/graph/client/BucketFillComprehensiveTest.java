@@ -29,15 +29,12 @@ public class BucketFillComprehensiveTest {
 
     @Test
     public void testBucketFill() throws Exception {
-        Grid[][] expectedGrids = {
-                {new Dash(), new Dash(), new Dash(), new Dash(), new Dash(), new Dash(),new Dash(), new Dash(), new Dash(), new Dash()},
-                {new Bar(), new Vacant(1,1), new Vacant(1,2), new Cross(), new Circle(), new Circle(),new Circle(),new Circle(),new Circle(),new Bar()},
-                {new Bar(), new Cross(), new Cross(), new Cross(), new Cross(),new Cross(), new Cross(),new Circle(),new Circle(), new Bar()},
-                {new Bar(), new Circle(), new Circle(),new Circle(), new Cross(), new Cross(),new Cross(),new Circle(),new Circle(),new Bar()},
-                {new Bar(), new Circle(), new Circle(),new Circle(), new Circle(), new Circle(),new Circle(),new Circle(), new Circle(), new Bar()},
-                {new Dash(), new Dash(), new Dash(), new Dash(), new Dash(), new Dash(), new Dash(),new Dash(), new Dash(), new Dash()}
-        };
-        Grid[][] grids = MyCanvas.getInstance().getGrids();
+        String expected = "----------\n"+
+                "|  xooooo|\n" +
+                "|xxxxxxoo|\n" +
+                "|oooxxxoo|\n" +
+                "|oooooooo|\n" +
+                "----------" ;
 
         RShortcut rShortcut = new RShortcut(4, 2, 6, 3);
         MyGraphics2DApp app = new MyGraphics2DApp(rShortcut);
@@ -57,7 +54,6 @@ public class BucketFillComprehensiveTest {
 
         Grid[][] result = MyCanvas.getInstance().getGrids();
         String actual = render.displayGrids(result);
-        String expected = render.displayGrids(expectedGrids);
         assertEquals(expected, actual);
     }
 }
