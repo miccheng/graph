@@ -1,5 +1,11 @@
 package com.example.graph.shortcut;
 
-public interface Shortcut {
-    public int[] getCoordinates();
+import com.example.graph.client.ActionVisitor;
+import com.example.graph.command.Command;
+
+public abstract class Shortcut {
+    public abstract int[] getCoordinates();
+
+    public abstract Command accept(ActionVisitor av);
+
 }

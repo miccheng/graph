@@ -3,7 +3,7 @@
 
 ## Table of contents
 * [Assumptions](#Assumptions)
-* [Design intention && Implementation](#Design intention && Implementation)
+* [Design intention && Implementation](#Design intention)
 * [Test](#Test)
 
 
@@ -45,13 +45,32 @@
 * Separation of concern
     Shortcut interacts with UI, Command is where execution is executed. All the actions fall on 2D array.
   
+* Visitor design pattern
+  With the introduction of abstract class, polymorphism can be leveraged. 
+  However, code tends to be more like (X instanceof Y) when implemented. Soon I realise it's ugly. Therefore, I adopted visitor design pattern to get rid of the code listed below.
+  
+    >    private void mapShortcut2Command() {
+    >        if (shortcut instanceof CShortcut) {
+    >            this.command = new CanvasCommand(shortcut.getCoordinates());
+    >        } else if (shortcut instanceof LShortcut) {
+    >            this.command = new LineCommand(shortcut.getCoordinates());
+    >        } else if (shortcut instanceof RShortcut) {
+    >            this.command = new RectangleCommand(shortcut.getCoordinates());
+    >        } else if (shortcut instanceof BShortcut) {
+    >            this.command = new BucketFillCommand(shortcut.getCoordinates(), ((BShortcut) shortcut).getFillShape());
+    >        } else if (shortcut instanceof QShortcut) {
+    >            this.command = new QuitCommand();
+    >        } else {
+    >            System.out.println("Unknown operation: I'm confused.Don't know what to do...");
+    >            return;
+    >        }
+    >    }
 
 ## Test:
-* GraphDrawTestSuite is a complete use case of all draw shape actions. Test builds on test.
-   The sequence of running is predefined. Hence, it is meant to be run as a whole.
+* Each test cases in ExtremeTest class is independent of each other as canvas is reset after every test is run.
 
-* Extreme class
-
+* GraphDrawTestSuite is a complete use case of all draw shape actions. Test builds on test. Drawings are accumulated.
+  The sequence of running is predefined. Hence, it is meant to be run as a whole.
 
 ## How to run
 * Run GraphApplication class

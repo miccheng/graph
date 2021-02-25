@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest(classes={GraphApplication.class})
-class GraphApplicationTests {
+class GraphApplicationTest {
 
     @Test
     void contextLoads() {

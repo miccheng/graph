@@ -1,7 +1,11 @@
 package com.example.graph.shortcut;
 
 
-public class CShortcut implements Shortcut{
+import com.example.graph.client.ActionVisitor;
+import com.example.graph.command.CanvasCommand;
+import com.example.graph.command.Command;
+
+public class CShortcut extends Shortcut{
     public int width;
     public int height;
 
@@ -9,6 +13,11 @@ public class CShortcut implements Shortcut{
     @Override
     public int[] getCoordinates() {
         return new int []{width,height};
+    }
+
+    @Override
+    public CanvasCommand accept(ActionVisitor actionVisitor) {
+        return actionVisitor.visit(this);
     }
 
     public CShortcut(int width, int height) {

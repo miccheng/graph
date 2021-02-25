@@ -34,37 +34,44 @@ public class BucketFillCommand extends Command{
     private void floodFill(Class<? extends Grid> fillShape) {
         Queue<Grid> queue = new LinkedList<>();
         queue.add(canvas.getGrids()[y][x]);
-        int row=canvas.getGrids().length;
-        int column=canvas.getGrids()[0].length;
+        int row = canvas.getGrids().length;
+        int column = canvas.getGrids()[0].length;
 
         System.out.println("BFS traversal...");
-        while(!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             Grid current = queue.remove();
             Vacant vacant = (Vacant) current;
             y = vacant.getRow();
             x = vacant.getColumn();
 
             try {
-                canvas.getGrids()[y][x]=fillShape.newInstance();
-            } catch (InstantiationException |IllegalAccessException e) {
-                canvas.getGrids()[y][x]=new Circle();
+                canvas.getGrids()[y][x] = fillShape.newInstance();
+            } catch (InstantiationException | IllegalAccessException e) {
+                canvas.getGrids()[y][x] = new Circle();
             }
-
-            if(x-1>=0 && canvas.getGrids()[y][x-1] instanceof Vacant && ((Vacant) canvas.getGrids()[y][x-1]).isVisited()==false){
-                queue.add(canvas.getGrids()[y][x-1]);//go left
-                ((Vacant) canvas.getGrids()[y][x-1]).setVisited(true);
+            //go left
+            Grid left = canvas.getGrids()[y][x - 1];
+            if (x - 1 >= 0 && left instanceof Vacant && ((Vacant) left).isVisited() == false) {
+                queue.add(left);
+                ((Vacant) left).setVisited(true);
             }
-            if(x+1<=column && canvas.getGrids()[y][x+1] instanceof Vacant && ((Vacant) canvas.getGrids()[y][x+1]).isVisited()==false){
-                queue.add(canvas.getGrids()[y][x+1]);//go right
-                ((Vacant) canvas.getGrids()[y][x+1]).setVisited(true);
+            //go right
+            Grid right = canvas.getGrids()[y][x + 1];
+            if (x + 1 <= column && right instanceof Vacant && ((Vacant) right).isVisited() == false) {
+                queue.add(right);
+                ((Vacant) right).setVisited(true);
             }
-            if(y-1>=0 && canvas.getGrids()[y-1][x] instanceof Vacant && ((Vacant) canvas.getGrids()[y-1][x]).isVisited()==false){
-                queue.add(canvas.getGrids()[y-1][x]);//go up
-                ((Vacant) canvas.getGrids()[y-1][x]).setVisited(true);
+            //go up
+            Grid up = canvas.getGrids()[y - 1][x];
+            if (y - 1 >= 0 && up instanceof Vacant && ((Vacant) up).isVisited() == false) {
+                queue.add(up);
+                ((Vacant) up).setVisited(true);
             }
-            if(y+1<=row && canvas.getGrids()[y+1][x] instanceof Vacant && ((Vacant) canvas.getGrids()[y+1][x]).isVisited()==false){
-                queue.add(canvas.getGrids()[y+1][x]);//go down
-                ((Vacant) canvas.getGrids()[y+1][x]).setVisited(true);
+            //go down
+            Grid down = canvas.getGrids()[y + 1][x];
+            if (y + 1 <= row && down instanceof Vacant && ((Vacant) down).isVisited() == false) {
+                queue.add(down);
+                ((Vacant) down).setVisited(true);
             }
         }
     }

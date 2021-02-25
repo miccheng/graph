@@ -1,6 +1,10 @@
 package com.example.graph.shortcut;
 
-public class LShortcut implements Shortcut{
+import com.example.graph.client.ActionVisitor;
+import com.example.graph.command.Command;
+import com.example.graph.command.LineCommand;
+
+public class LShortcut extends Shortcut{
     public int x1;
     public int y1;
     public int x2;
@@ -20,5 +24,10 @@ public class LShortcut implements Shortcut{
     @Override
     public int[] getCoordinates() {
         return new int[]{x1,y1,x2,y2};
+    }
+
+    @Override
+    public LineCommand accept(ActionVisitor actionVisitor) {
+        return actionVisitor.visit(this);
     }
 }
