@@ -178,12 +178,9 @@ public class ExtremeCaseTests {
     }
 
 
-    //7.error in input args
-
-
-//    @After
-//    public void resetCanvas() {
-//
-//    }
+    @After
+    public void resetCanvas() {
+        MyCanvas.getInstance().resetGrids();
+    }
 
 }

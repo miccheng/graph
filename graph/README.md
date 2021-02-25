@@ -18,6 +18,8 @@
 * Draw action is idempotent. A drawn area can't be drawn again.
 * Line here can only be vertical or horizontal.
 * Bucket fill is 4way.
+* Wrong input from user, or Error in input args are already checked and handled by UI.
+
 
 ## Design intention && Implementation:
 * Command design pattern

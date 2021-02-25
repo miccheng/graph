@@ -45,4 +45,11 @@ public class MyCanvas {
     public Grid[][] getGrids(){
         return grids;
     }
+
+    public void resetGrids() {
+        int height = grids.length - 2;
+        int width = grids[0].length - 2;
+        System.out.println("Height:"+height+"Width"+width);
+        setUpGrids(height,width);
+    }
 }
