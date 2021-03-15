@@ -27,17 +27,17 @@ public class UniqueBST {
 
     public static void main(String args[]){
         List<Integer> integers = Lists.newArrayList(1, 2, 3);
-        constructTree(integers);
+        List<TreeNode> treeNodes = constructTree(integers);
+        System.out.println();
     }
 
     public static List<TreeNode> constructTree( List<Integer> list ) {
         List<TreeNode> roots = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
             TreeNode parentNode = new TreeNode(list.get(i));
-            roots.add(parentNode);
 
             if (list.size() == 1) {
-                roots.add(parentNode);
+                roots.add(new TreeNode(list.get(0)));
                 return roots;
             }
 
@@ -47,17 +47,15 @@ public class UniqueBST {
             //left
             if (i != 0) {
                 leftNodes.addAll(constructTree(list.subList(0, i)));
-//                parentNode.left = leftNode;
             } else {
-                parentNode.left = null;
+                leftNodes.add(null);
             }
 
             //right
-            if (i != tail) {
+            if (i+1 != tail) {
                 rightNodes.addAll(constructTree(list.subList(i + 1, tail)));
-//                parentNode.right = rightNode;
             } else {
-                parentNode.right = null;
+                rightNodes.add(null);
             }
 
             for (TreeNode node : leftNodes) {
