@@ -4,19 +4,17 @@ import sun.reflect.generics.tree.Tree;
 
 public class SubtreeOfTree {
     public static void main(String args[]) {
-        TreeNode tleft = new TreeNode(3);
-        TreeNode tright = new TreeNode(2);
-        TreeNode t = new TreeNode(4,tleft,tright);
+        TreeNode node7 = new TreeNode(7);
 
-        TreeNode ssleft = new TreeNode(3);
-        TreeNode ssright = new TreeNode(2);
-        TreeNode sstop = new TreeNode(4,ssleft,ssright);
+        TreeNode node1 = new TreeNode(1);
+        TreeNode node2 = new TreeNode(2);
+        TreeNode node4 = new TreeNode(4,node1,node2);
 
-        TreeNode sleft = new TreeNode(1);
-        sleft.left=sstop;
-        TreeNode sright = new TreeNode(2);
+        TreeNode node5 = new TreeNode(5);
+        TreeNode node6 = new TreeNode(6,node7,node4);
+        TreeNode s = new TreeNode(3,node5,node6);
 
-        TreeNode s = new TreeNode(4,sleft,sright);
+        TreeNode t = new TreeNode(4,node1,node2);
 
         boolean b = isSubtree(s, t);
         System.out.println();
