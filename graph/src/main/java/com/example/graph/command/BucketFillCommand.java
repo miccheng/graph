@@ -5,6 +5,8 @@ import com.example.graph.model.Circle;
 import com.example.graph.model.Grid;
 import com.example.graph.model.Vacant;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -25,11 +27,13 @@ public class BucketFillCommand extends Command{
     }
 
     private void bucketFill() {
-        canvas= MyCanvas.getInstance();
-        if(canvas.getGrids()[y][x] instanceof Vacant ==false)
+        canvas = MyCanvas.getInstance();
+        if (canvas.getGrids()[y][x] instanceof Vacant == false)
             return;
-        floodFill(fillShape);
+        DFSFloodFill(fillShape);
+//        floodFill(fillShape);
     }
+
 
     private void floodFill(Class<? extends Grid> fillShape) {
         Queue<Grid> queue = new LinkedList<>();
@@ -74,5 +78,51 @@ public class BucketFillCommand extends Command{
                 ((Vacant) down).setVisited(true);
             }
         }
+    }
+
+
+    private void DFSFloodFill(Class<? extends Grid> fillShape) {
+        Deque<Grid> arrayDeque = new ArrayDeque<Grid>();
+        arrayDeque.add(canvas.getGrids()[y][x]);
+            int row = canvas.getGrids().length;
+            int column = canvas.getGrids()[0].length;
+
+            System.out.println("BFS traversal...");
+            while (!arrayDeque.isEmpty()) {
+                Grid current = arrayDeque.remove();
+                Vacant vacant = (Vacant) current;
+                y = vacant.getRow();
+                x = vacant.getColumn();
+
+                try {
+                    canvas.getGrids()[y][x] = fillShape.newInstance();
+                } catch (InstantiationException | IllegalAccessException e) {
+                    canvas.getGrids()[y][x] = new Circle();
+                }
+                //go left
+                Grid left = canvas.getGrids()[y][x - 1];
+                if (x - 1 >= 0 && left instanceof Vacant && ((Vacant) left).isVisited() == false) {
+                    arrayDeque.add(left);
+                    ((Vacant) left).setVisited(true);
+                }
+                //go right
+                Grid right = canvas.getGrids()[y][x + 1];
+                if (x + 1 <= column && right instanceof Vacant && ((Vacant) right).isVisited() == false) {
+                    arrayDeque.add(right);
+                    ((Vacant) right).setVisited(true);
+                }
+                //go up
+                Grid up = canvas.getGrids()[y - 1][x];
+                if (y - 1 >= 0 && up instanceof Vacant && ((Vacant) up).isVisited() == false) {
+                    arrayDeque.add(up);
+                    ((Vacant) up).setVisited(true);
+                }
+                //go down
+                Grid down = canvas.getGrids()[y + 1][x];
+                if (y + 1 <= row && down instanceof Vacant && ((Vacant) down).isVisited() == false) {
+                    arrayDeque.add(down);
+                    ((Vacant) down).setVisited(true);
+                }
+            }
     }
 }

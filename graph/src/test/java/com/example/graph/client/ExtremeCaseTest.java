@@ -1,18 +1,16 @@
 package com.example.graph.client;
 
-import com.example.graph.model.Circle;
-import com.example.graph.model.Grid;
-import com.example.graph.shortcut.BShortcut;
 import com.example.graph.shortcut.LShortcut;
 import com.example.graph.shortcut.QShortcut;
 import com.example.graph.shortcut.RShortcut;
+import com.example.graph.model.Circle;
+import com.example.graph.model.Grid;
+import com.example.graph.shortcut.BShortcut;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;

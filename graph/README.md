@@ -66,10 +66,12 @@
     >        }
     >    }
 
-## Test:
+## Test
+* Run 1 Test class once.
+  
 * Each test cases in ExtremeTest class is independent of each other as canvas is reset after every test is run.
 
-* GraphDrawTestSuite is a complete use case of all draw shape actions. Test builds on test. Drawings are accumulated.
+* GraphDrawTestSuite is a complete use case of all draw shape actions. Test case builds on test case. Drawings are accumulated.
   The sequence of running is predefined. Hence, it is meant to be run as a whole.
 
 ## How to run

@@ -1,7 +1,6 @@
 package com.example.graph.shortcut;
 
 import com.example.graph.client.ActionVisitor;
-import com.example.graph.command.Command;
 import com.example.graph.command.LineCommand;
 
 public class LShortcut extends Shortcut{

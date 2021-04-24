@@ -1,7 +1,7 @@
 package com.example.graph.client;
 
-import com.example.graph.command.*;
-import com.example.graph.shortcut.*;
+import com.example.graph.command.Command;
+import com.example.graph.shortcut.Shortcut;
 
 public class MyGraphics2DApp {
     public Shortcut shortcut;

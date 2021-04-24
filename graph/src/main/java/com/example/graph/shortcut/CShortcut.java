@@ -3,7 +3,6 @@ package com.example.graph.shortcut;
 
 import com.example.graph.client.ActionVisitor;
 import com.example.graph.command.CanvasCommand;
-import com.example.graph.command.Command;
 
 public class CShortcut extends Shortcut{
     public int width;

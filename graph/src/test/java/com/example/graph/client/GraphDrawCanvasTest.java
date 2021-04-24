@@ -1,10 +1,10 @@
 package com.example.graph.client;
 
-import com.example.graph.model.Bar;
 import com.example.graph.model.Dash;
+import com.example.graph.shortcut.CShortcut;
+import com.example.graph.model.Bar;
 import com.example.graph.model.Grid;
 import com.example.graph.model.Vacant;
-import com.example.graph.shortcut.CShortcut;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -2,7 +2,6 @@ package com.example.graph.client;
 
 import com.example.graph.model.Grid;
 import com.example.graph.model.Vacant;
-import org.springframework.stereotype.Component;
 
 public class PreChecker {
 

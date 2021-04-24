@@ -1,9 +1,10 @@
 package com.example.graph.client;
 
-import com.example.graph.model.*;
-import com.example.graph.shortcut.BShortcut;
+import com.example.graph.model.Circle;
+import com.example.graph.model.Grid;
 import com.example.graph.shortcut.LShortcut;
 import com.example.graph.shortcut.RShortcut;
+import com.example.graph.shortcut.BShortcut;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
