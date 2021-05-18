@@ -16,7 +16,7 @@ public class FirstLastPositionofElementInSortedArray {
         //left most
         while (left < right) {
             int mid = left + (right - left) / 2;
-            if (target > arr[mid]) {
+            if (arr[mid] < target) {
                 left = mid + 1;
             } else {
                 right = mid;
@@ -29,7 +29,7 @@ public class FirstLastPositionofElementInSortedArray {
         int end = arr.length - 1;
         while (start < end) {
             int mid = start + (end - start) / 2;
-            if (target >= arr[mid]) {
+            if (arr[mid] <= target) {
                 start = mid + 1;
             } else {
                 end = mid;

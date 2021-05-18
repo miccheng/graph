@@ -1,4 +1,4 @@
-package com.example.leetcode.greedy.slidingwindow;
+package com.example.leetcode.slidingwindow;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,6 +7,7 @@ import java.util.Map;
 
 //*****Variation of sliding window
 public class SubstringWithConcatenationOfAllWords {
+
     public List<Integer> findSubstring(String s, String[] words) {
         List<Integer> result = new ArrayList<>();
         if (s == null || s.length() == 0) return result;

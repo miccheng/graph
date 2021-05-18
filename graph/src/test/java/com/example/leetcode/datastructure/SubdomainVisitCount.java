@@ -32,7 +32,6 @@ public class SubdomainVisitCount {
             }
         }
 
-
         return map.entrySet().stream().map(e -> String.valueOf(e.getValue()) + padding + e.getKey()).collect(Collectors.toList());
     }
 }

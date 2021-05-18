@@ -1,6 +1,6 @@
 package com.example.leetcode.twopointers;
 
-//distribute candy
+//distribute candy to children
 public class ShortestUnsortedContinuousSubarray {
 //   Given an integer array nums, you need to find one continuous subarray that if you only sort this subarray
 //   in ascending order, then the whole array will be sorted in ascending order.

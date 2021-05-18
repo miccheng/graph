@@ -1,4 +1,4 @@
-package com.example.leetcode.greedy.recursivedp;
+package com.example.leetcode.recursivedp;
 
 public class HouseRobber {
     //similar problems: Maximum Product Subarray n decode numbers

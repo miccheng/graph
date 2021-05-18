@@ -13,7 +13,6 @@ public class MergeIntervals {
     }
 
     public static int[][] merge(int[][] intervals) {
-        int row = intervals.length;
         //sort array
         Arrays.sort(intervals, (e1, e2) -> Integer.compare(e1[0], e2[0]));
 
@@ -22,9 +21,9 @@ public class MergeIntervals {
         int[] current = intervals[0];
 
         for (int[] interv : intervals) {
-            if (interv[0] <= current[1]) {
+            if (current[1] >= interv[0]) {//overlap->update
                 current[1] = Math.max(current[1], interv[1]);
-            } else {
+            } else {//add
                 current = interv;
                 list.add(interv);
             }
@@ -32,4 +31,7 @@ public class MergeIntervals {
 
         return list.toArray(new int[0][0]);
     }
+
+
+
 }

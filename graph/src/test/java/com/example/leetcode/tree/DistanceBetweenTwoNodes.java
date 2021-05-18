@@ -5,24 +5,25 @@ public class DistanceBetweenTwoNodes {
     static int result = Integer.MAX_VALUE;
     static Integer pre = null;
 
+    //Solution1: find LCA+ depth of tree problem. Count the distance to ancestor each and add them up
     public static int distanceBetween2Nodes(TreeNode root, TreeNode p, TreeNode q ) {
         int distance = 0;
         TreeNode ancester = findCommonAncester(root, p, q);
 
         //calculate both nodes distance from LCA;
-        int level1=findDepthTillNode(ancester,p);
-        int level2=findDepthTillNode(ancester,q);
+        int level1 = findLevelOfNode(ancester, p);
+        int level2 = findLevelOfNode(ancester, q);
 
-        distance=level1+level2-2;
+        distance = level1 + level2;
         return distance;
     }
 
-    private static int findDepthTillNode(TreeNode root, TreeNode p) {
-        if (root == null) return 0;
-        if (root == p) return 1;
+    private static int findLevelOfNode(TreeNode root, TreeNode p) {
+        if (root == null) return -1;
+        if (root == p) return 0;
 
-        int depth1 = findDepthTillNode(root.left, p);
-        int depth2 = findDepthTillNode(root.right, p);
+        int depth1 = findLevelOfNode(root.left, p);
+        int depth2 = findLevelOfNode(root.right, p);
 
         int depth = depth2 >= depth1 ? depth2 : depth1;
         if (depth > 0) depth++;
@@ -39,13 +40,13 @@ public class DistanceBetweenTwoNodes {
         return left == null ?right:left;
     }
 
-    //Traverse tree and recording its previous node val
+    //Solution2: Traverse tree and recording its previous node val
 //    Given the root of a Binary Search Tree (BST), return the minimum difference between the values of any two different nodes in the tree.
     public static int getMinimumDifference(TreeNode root) {
         traverse(root);
         return result;
     }
-
+    //***inorder traverse
     public static int traverse(TreeNode root) {
         if (root.left != null) traverse(root.left);
 

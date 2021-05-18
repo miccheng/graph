@@ -29,23 +29,13 @@ public class SymmetricTree {
         return checkSymmetric(root.left, root.right);
     }
 
-    static boolean  checkSymmetric(TreeNode rootL, TreeNode rootR) {
-        if (rootL == null || rootR == null)
-            return rootL == rootR;
-
-        if (rootL.val != rootR.val) return false;
-
-/*        if (rootL == rootR && rootL == null)
-            return true;
-        if (rootL == null || rootR == null)
-            return false;*/
-
-
-            boolean b = checkSymmetric(rootL.left, rootR.right);
-            boolean d = checkSymmetric(rootL.right, rootR.left);
-
-            if (b == false || d == false) return false;
-
-        return true;
+    public static boolean checkSymmetric(TreeNode left,TreeNode right) {
+        if (left == null || right == null)
+            return left == right;
+        else if (left.val != right.val)
+            return false;
+        else
+            return checkSymmetric(left.left, right.right) && isMirror(left.right, right.left);
     }
+
 }

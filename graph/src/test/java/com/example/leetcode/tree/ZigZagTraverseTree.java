@@ -1,24 +1,48 @@
 package com.example.leetcode.tree;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 //TODO
 public class ZigZagTraverseTree {
 
     public static void main(String[] args) {
-        TreeNode root = new TreeNode(10);
-        TreeNode node8 = new TreeNode(8);
-        TreeNode node2 = new TreeNode(2);
-        root.left = node8;
-        root.right = node2;
-        node8.left = new TreeNode(3);
-        node8.right = new TreeNode(5);
-        printZigZagTraversal(root);
+        TreeNode root = new TreeNode(3);
+        TreeNode node9 = new TreeNode(9);
+        TreeNode node20 = new TreeNode(20);
+        root.left = node9;
+        root.right = node20;
+        node20.left = new TreeNode(15);
+        node20.right = new TreeNode(7);
+        zigzagLevelOrder(root);
+
+    }
+    public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) return result;
+
+        boolean leftToRight = true;
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            Integer size = queue.size();
+            List<Integer> levelNode = new ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                if (leftToRight) {
+                    levelNode.add(node.val);
+                } else {
+                    levelNode.add(0, node.val);
+                }
+                if (node.left != null) queue.add(node.left);
+                if (node.right != null) queue.add(node.right);
+            }
+            leftToRight = false;
+            result.add(levelNode);
+        }
+        return result;
     }
 
+    
     public static List<TreeNode> printZigZagTraversal(TreeNode root) {
         List<TreeNode> result = new ArrayList<>();
         if (root == null) return result;

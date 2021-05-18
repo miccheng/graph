@@ -25,7 +25,7 @@ public class Find2ndLargest {
             }
         }
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] != largestNum && arr[i] > secondLargestNum) {
+            if (arr[i] != largestNum && arr[i] > secondLargestNum) {//ignore 1st largest num
                 secondLargestNum = arr[i];
             }
         }

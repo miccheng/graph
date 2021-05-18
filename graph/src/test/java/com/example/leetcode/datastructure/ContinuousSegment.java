@@ -1,4 +1,4 @@
-package com.example.leetcode.greedy.datastructure;
+package com.example.leetcode.datastructure;
 
 import org.assertj.core.util.Maps;
 

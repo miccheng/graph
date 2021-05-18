@@ -46,4 +46,21 @@ public class TraverseTree {
         list.add(root);
         if(root.right!=null) inorder(root.right);
     }
+
+    //inorder iterative
+    public void inorderIter(TreeNode root) {
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode current = root;
+
+        while (!stack.isEmpty() || current != null) {
+            if (current != null) {
+                stack.push(current);
+                current = current.left;
+            } else {
+                current = stack.pop();
+                System.out.println(current);
+                current = current.right;
+            }
+        }
+    }
 }

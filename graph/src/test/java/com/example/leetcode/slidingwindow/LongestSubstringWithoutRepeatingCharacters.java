@@ -17,7 +17,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
         while (j < s.length()) {
             char c = s.charAt(j);
             while (set.contains(c)) {
-                set.remove(s.charAt(j));
+                set.remove(s.charAt(i));
                 i++;
             }
             set.add(c);
@@ -29,22 +29,23 @@ public class LongestSubstringWithoutRepeatingCharacters {
     }
 
     public int lengthOfLongestSubstring2(String s) {
-        int max = 0;
+        int maxLen = Integer.MIN_VALUE;
         int i = 0;
         int j = 0;
         Set<Character> set = new HashSet<>();
+
         while (j < s.length()) {
-            char c = s.charAt(j);
-            if (!set.contains(c)) {
-                set.add(c);
+            if (!set.contains(s.charAt(j))) {
+                set.add(s.charAt(j));
+                maxLen = Math.max(maxLen, j - i + 1);
                 j++;
-                max = Math.max(set.size(),max);
             } else {
-                set.remove(c);
+                set.remove(s.charAt(i));
                 i++;
             }
         }
 
-        return max;
+        return maxLen;
     }
+
 }

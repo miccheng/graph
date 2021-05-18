@@ -15,36 +15,41 @@ public class MinimumWindowSubstring {
         for (char c : t.toCharArray()) {
             map.put(c, map.getOrDefault(c, 0) + 1);
         }
-        int start = 0;
-        int end = 0;
-        int head=0;
+        int i = 0;
+        int j = 0;
+        int head = 0;
         int min = Integer.MAX_VALUE;
         int count = map.size();
 
-        while (end < s.length()) {
-            char c = s.charAt(end);
-            if (map.containsKey(c)) {
-                map.put(c, map.get(c) - 1);
-                if (map.get(c) == 0) count--;
+        while (j < s.length()) {
+            char endChar = s.charAt(j);
+            j++;
+            if (map.containsKey(endChar)) {
+                map.put(endChar, map.get(endChar) - 1);
+                if (map.get(endChar) == 0) count--;
             }
+            if (count > 0) continue;//advance j
 
-            while(count==0){
-                char c1 = s.charAt(start);
-                if(map.containsKey(c1)){
-                    map.put(c1,map.get(c1)+1);
-                    if(map.get(c)>0) count++;
+            //*** cal maxLen, invalid map
+            while (count == 0) {
+                //min=Math.min(min,j-i);
+                if (j - i < min) {
+                    min = j - i;
+                    head = i;
+                }
+
+                char startChar = s.charAt(i);
+                i++;
+                if (map.containsKey(startChar)) {
+                    map.put(startChar, map.get(startChar) + 1);
+                    if (map.get(startChar) > 0) count++;
                 }
             }
-
-            //min=Math.min(min,end-start);
-            if(end-start < min){
-                min = end - start;
-                head = start;
-            }
-            start++;
         }
 
-        if(min == Integer.MAX_VALUE) return "";
-        return s.substring(head, head+min);
+        if (min == Integer.MAX_VALUE) return "";
+        return s.substring(head, head + min);
     }
+
+    
 }

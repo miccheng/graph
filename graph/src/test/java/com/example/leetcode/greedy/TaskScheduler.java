@@ -1,2 +1,3 @@
-package com.example.leetcode.greedy;public class TaskScheduler {
+package com.example.leetcode.greedy;
+public class TaskScheduler {
 }

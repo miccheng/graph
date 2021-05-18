@@ -5,10 +5,10 @@ public class LongestPalindromeSubstring {
 
     public static void main(String args[]){
 //        longestPalindrome("cbbd");
-        longestPalindrome2("ac");
-        findLongestPalindrome("racecar");
-        findLongestPalindrome("abba");
-
+//        longestPalindrome2("ac");
+//        findLongestPalindrome("racecar");
+//        findLongestPalindrome("abba");
+        findLongestPalindrome("babad");
     }
 
     public static String findLongestPalindrome(String s) {
@@ -16,7 +16,6 @@ public class LongestPalindromeSubstring {
         int len = 0;
         int start = 0;
         int end = 0;
-
         for (int i = 0; i < s.length(); i++) {
             int len1 = extendPalindrome(s, i, i);
             int len2 = extendPalindrome(s, i, i + 1);
@@ -28,12 +27,12 @@ public class LongestPalindromeSubstring {
                 end = i + len / 2;
             }
         }
-        return s.substring(start, end);
+        return s.substring(start, end + 1);
     }
 
     private static int extendPalindrome(String s, int left, int right) {
         if (s == null || left > right) return 0;
-        while (left >= 0 && right <= s.length() && s.charAt(left) == s.charAt(right)) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
             left--;
             right++;
         }

@@ -30,18 +30,13 @@ public class Anagram {
         System.out.println(String.valueOf(no1).equals(String.valueOf(no2)));
 
         String[] strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
-//        groupAnagram(strs);
+        groupAnagram(strs);
 
     }
-
-
-
 
         //use 2 maps to compare
         //Map.equals();
         //first.entrySet().stream().allMatch(e -> e.getValue().equals(second.get(e.getKey())));
-
-
     private static List<List<String>> groupAnagram(String[] strs) {
         HashMap<String, List<String>> map = new HashMap<String, List<String>>();
         for (int i = 0; i < strs.length; i++) {

@@ -6,7 +6,7 @@ public class NextPermutation {
     //[9,1,2,4,3,1,0]-->[9,1,3,0,1,2,4]
     public static void main(String[] args) {
 //        int arr[]={9,1,2,4,3,1,0};
-        int arr[]={1,3,2};
+        int arr[]={1,4,2,3};
         findNextPermutation(arr);
     }
 
@@ -25,7 +25,7 @@ public class NextPermutation {
             return;
         }
 
-        //get smallest number of the traversed numbers
+        //get smallest number of the traversed numbers that is larger than kth
         int min = Integer.MAX_VALUE;
         int index = -1;
         for (int i = nums.length-1; i >k ; i--) {

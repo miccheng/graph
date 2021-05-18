@@ -10,24 +10,24 @@ public class PartitionSubsetEqual {
         if((sum & 1) == 1)  return false;//sum%2==0
 
         int n = nums.length;
-        boolean[][] dp = new boolean[n+1][sum+1];
+        boolean[][] dp = new boolean[n+1][sum/2+1];
         for (int i = 0; i < n+1; i++) {//initialize rows with true
             dp[i][0]=true;
         }
 
-        for (int j = 1; j < sum+1; j++) {//initialize columns with false
+        for (int j = 1; j < sum/2+1; j++) {//initialize columns with false
             dp[0][j]=false;
         }
 
         for (int i = 1; i < n+1; i++) {
-            for (int j = 1; j < sum + 1; j++) {
+            for (int j = 1; j < sum/2 + 1; j++) {
                 dp[i][j] = dp[i - 1][j];
                 if (j >= nums[i - 1]) {
                     dp[i][j] = (dp[i][j] || dp[i - 1][j - nums[i - 1]]);//compare to coin change problem
                 }
             }
         }
-        return dp[n][sum];
+        return dp[n][sum/2];
     }
 
 

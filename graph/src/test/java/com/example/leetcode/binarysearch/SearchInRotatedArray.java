@@ -31,10 +31,10 @@ public class SearchInRotatedArray {
         //which section it falls in
         int left=0;
         int rightt=arr.length-1;
-        if(target>arr[pivot] &&target>arr[right]){
-            rightt=pivot-1;
-        }else{
-            left=pivot;
+        if (target > arr[pivot] && target > arr[right]) {
+            rightt = pivot - 1;
+        } else {
+            left = pivot;
         }
 
         //binary serach

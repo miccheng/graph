@@ -1,8 +1,10 @@
 package com.example.leetcode.tree;
 
 public class CommonAncester {
-    //Given Binary Tree, find the Lowest Common Ancestor
-    //***Move up the found node up along the tree
+//    3     Given Binary Tree, find the Lowest Common Ancestor
+//  5   1
+// 6 2 0 8
+    //solution1: ***lift up the founded node up along the tree
     public static TreeNode lowestCommonAncestorOfTree(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) return root;
         if (root == p || root == q) return root;
@@ -11,23 +13,42 @@ public class CommonAncester {
         TreeNode right = lowestCommonAncestorOfTree(root.right, p, q);
 
         if (left != null && right != null) return root;
-        return left != null ? left : right;
+        else if(left == null && right == null) return null;
+        return left == null ? right : left;
     }
 
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if (root == null) return null;
-
-        if (root.left == p && root.right == q) return root;
-
-        TreeNode left = lowestCommonAncestor(root.left, p, q);
-        TreeNode right = lowestCommonAncestor(root.right, p, q);
-
-        if (left == null) return right;
-        else if (right == null) return left;
-        else return root;
+    //Solution2: postorder Traverse tree with boolean
+    //experiment with preorder
+    public TreeNode LCATraverse(TreeNode root, TreeNode p, TreeNode q) {
+        TreeNode ancestor = null;
+        boolean b = LCA(root, p, q, ancestor);
+        if(ancestor==null && b==true)
+            return root;
+        else if(ancestor!=null)
+            return ancestor;
+        return null;
     }
 
-//    Given a binary search tree (BST), find the lowest common ancestor
+    private boolean LCA(TreeNode root, TreeNode p, TreeNode q, TreeNode ancestor) {
+        //traverse the tree
+        if (root == null) return false;
+        if (root == p || root == q) return true;
+
+        boolean left = LCA(root.left, p, q, ancestor);
+        boolean right = LCA(root.right, p, q, ancestor);
+
+        if (left && right)
+            ancestor = root;
+        else if(left==true )
+            ancestor=root.right;
+        else
+            ancestor=root.left;
+
+        return left || right;
+    }
+
+
+    //*** Given a binary search tree (BST), find the lowest common ancestor
     public TreeNode lowestCommonAncestorBST(TreeNode root, TreeNode p, TreeNode q) {
         if (root==null) return null;
 
@@ -41,6 +62,11 @@ public class CommonAncester {
         }
         return root;
     }
+
+
+
+
+
 
 
 }

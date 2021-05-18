@@ -8,7 +8,7 @@ public class FindMaxNumberOf1sRow {
         for (int i = 0; i < matrix.length; i++) {
             int index = checkEachRow(matrix, i);
             int occurrences = matrix[0].length - index;
-            if (occurrences != -1 && max > occurrences) {
+            if (occurrences != -1 && max < occurrences) {
                 max = occurrences;
                 row = i;
             }

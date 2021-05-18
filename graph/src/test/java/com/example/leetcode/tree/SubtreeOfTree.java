@@ -19,21 +19,22 @@ public class SubtreeOfTree {
     }
 
 //solution 1
-    public static boolean isSubtree(TreeNode s, TreeNode t) {
-        //traversal tree
-        if (s == null) return false;
-        if (isSame(s, t)) return true;
-        return isSame(s.left, t) || isSame(s.right, t);
+    public boolean isSubtree(TreeNode s, TreeNode t) {
+        if (s == null)
+            return false;
+        else if (isSame(s, t))//find the matching head node
+            return true;
+        return isSubtree(s.left, t) || isSubtree(s.right, t);
     }
 
-    private static boolean isSame(TreeNode s, TreeNode t) {
-        if (s == null && t == null) return true;
-        if (s == null || t == null) return false;
-
-        if (s.val != t.val) return false;
-
+    private boolean isSame(TreeNode s, TreeNode t) {
+        if (s == null || t == null)
+            return s == t;
+        else if (s.val != t.val)
+            return false;
         return isSame(s.left, t.left) && isSame(s.right, t.right);
     }
+
 
 
     //solution 2

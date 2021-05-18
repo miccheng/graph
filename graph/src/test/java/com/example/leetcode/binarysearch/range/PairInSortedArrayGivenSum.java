@@ -11,12 +11,14 @@ public class PairInSortedArrayGivenSum {
     public static boolean pairInSortedRotated(int arr[], int x) {
         int count = 0;
         int pivot = findPivot(arr);
-        int pointer1 = pivot-1;
-        int pointer2 = pivot;
+        int pointer1 = pivot - 1;//largest
+        int pointer2 = pivot;//smallest
         int result[] = new int[2];
+        int len = arr.length;
+
         while (pointer1 != pointer2) {
-            if (pointer1 < 0) pointer1 = pointer1 +arr.length;//***out of bound
-            if (pointer2 > arr.length - 1) pointer2 = pointer2 - arr.length;//***out of bound
+            if (pointer1 < 0) pointer1 = (pointer1 + len) % len;//***out of bound
+            if (pointer2 > len - 1) pointer2 = (pointer2 - len) % len;//***out of bound
             int sum = arr[pointer1] + arr[pointer2];
             if (sum < x) {
                 pointer2++;

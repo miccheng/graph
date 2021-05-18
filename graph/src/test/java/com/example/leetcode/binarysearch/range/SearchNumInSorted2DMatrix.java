@@ -1,6 +1,9 @@
 package com.example.leetcode.binarysearch.range;
 
 public class SearchNumInSorted2DMatrix {
+//PLUS: 1d-->2d data structure,
+// encoding (x,y)->Integer.Index=(x*column+y). Decode: x=Index/col, y=Index%col;
+
     //****Binary search in index:
     // matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 3
     public boolean searchMatrix(int[][] matrix, int target) {
@@ -11,7 +14,7 @@ public class SearchNumInSorted2DMatrix {
         int left = 0;
         int right = row * column - 1;
 
-        while (left < right) {
+        while (left <= right) {
             int mid = left + (right - left) / 2;
             //mapping indices
             int midpointEle = matrix[mid / column][mid % column];

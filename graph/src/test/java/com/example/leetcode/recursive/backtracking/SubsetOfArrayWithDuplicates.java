@@ -12,6 +12,7 @@ public class SubsetOfArrayWithDuplicates {
 
     //****how to avoid duplicate num?
     public static List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> path = new ArrayList<>();
         int index = 0;
@@ -56,6 +57,7 @@ public class SubsetOfArrayWithDuplicates {
             return;
         }
 
+        //increasing subarray
         if (ans.isEmpty() || nums[index] >= ans.get(ans.size() - 1)) {
             ans.add(nums[index]);
             helper(nums, index + 1, ans);

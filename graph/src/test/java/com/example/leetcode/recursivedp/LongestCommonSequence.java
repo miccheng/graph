@@ -1,4 +1,4 @@
-package com.example.leetcode.greedy.recursivedp;
+package com.example.leetcode.recursivedp;
 
 public class LongestCommonSequence {
     public static void main(String args[]) {

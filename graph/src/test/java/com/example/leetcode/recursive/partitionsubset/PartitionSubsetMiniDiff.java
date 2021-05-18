@@ -1,8 +1,9 @@
 package com.example.leetcode.recursive.partitionsubset;
 
 //    https://leetcode.com/problems/last-stone-weight-ii/
+//equals to partition array into 2 subset to get the mini diff
 public class PartitionSubsetMiniDiff {
-    //equals to partition array into 2 subset to get the mini diff
+  //***s1, s2--> s2=sum-s1,diff(s2,s1)=sum-s1-s1. So we just have to max s1
     public int lastStoneWeightII(int[] stones) {
         int sum = 0;
         for (int stone : stones) {

@@ -8,17 +8,18 @@ public class FindKthInSorted2DMatrix {
 
     //solution 1: use heap
     public int kthSmallest(int[][] matrix, int k) {
-        PriorityQueue<Tuple> heap = new PriorityQueue<Tuple>();
+        PriorityQueue<Tuple> heap = new PriorityQueue<Tuple>();//min heap
         for (int j = 0; j < matrix[0].length; j++) {
             heap.add(new Tuple(matrix[0][j], 0, j));
         }
 
-        for (int count = 0; count < k - 1; count++) {
+        for (int count = 0; count < k - 1; count++) {//operated (k-1) times
             Tuple poll = heap.poll();
             int x = poll.row;
             int y = poll.column;
             if (x >= matrix.length) continue;//reach the bottom row
-            heap.add(new Tuple(matrix[x + 1][y], x = 1, y));
+            //goes down the column
+            heap.add(new Tuple(matrix[x + 1][y], x + 1, y));//***replace that root with the next element from the same column
         }
         return heap.remove().val;
     }
@@ -26,7 +27,7 @@ public class FindKthInSorted2DMatrix {
     //Solution 2 : *****Binary Search of space. --> find duplicate number
     public int kthSmallestB(int[][] matrix, int k) {
         int left = matrix[0][0];
-        int right = matrix[matrix.length][matrix[0].length];
+        int right = matrix[matrix.length-1][matrix[0].length-1];
         while (left < right) {
             int mid = left + (right - left) / 2;
             int count = countNum(mid, matrix);
@@ -41,12 +42,12 @@ public class FindKthInSorted2DMatrix {
     private int countNum(int mid, int[][] matrix) {
         int count = 0;
         for (int i = 0; i < matrix.length; i++) {
-            int j = matrix[0].length;
+            int j = matrix[0].length-1;//***start from end of the row
             while (j >= 0) {
                 if (matrix[i][j] > mid) {
-                    j--;
-                    count += j + 1;
+                    count++;
                 }
+                j--;
             }
         }
 
