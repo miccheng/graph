@@ -6,13 +6,13 @@ public class QuickSort {
     }
 
     public static void qs(int[] arr, int l, int r) {
-        if (l >= r) {
+        if (l >= r) {//empty or 1 element only
             return;
         }
         int p = partition(arr, l, r);
 
-        qs(arr, l, p - 1);
-        qs(arr, p + 1, r);
+        qs(arr, l, p - 1);//left
+        qs(arr, p + 1, r);//right
     }
 
     public static int partition(int[] arr, int l, int r) {

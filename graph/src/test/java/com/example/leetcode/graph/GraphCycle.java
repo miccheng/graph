@@ -2,8 +2,11 @@ package com.example.leetcode.graph;
 
 public class GraphCycle {
 //    directed graph: DFS (backtracking) with an array of boolean
-//    bipartition: coloring
+//    see bipartition: coloring
 
 //undirected: course schedule: colouring
 // connected components: union find
+
+// Dijkstra's algorithm
+
 }

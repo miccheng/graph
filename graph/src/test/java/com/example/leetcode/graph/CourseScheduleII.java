@@ -4,6 +4,8 @@ import org.assertj.core.util.Lists;
 
 import java.util.*;
 
+//***topological sort for DAG(has to be DAG to apply topological sort)
+//1. top sort is not unique. 2.DAG will at least have one top sort 3.always start with node with 0 incoming vertices
 public class CourseScheduleII {
 
     public static void main(String[] args) {

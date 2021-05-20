@@ -1,9 +1,9 @@
-package com.example.leetcode.greedy.dfs;
+package com.example.leetcode.graph;
 
 import java.util.*;
 
 //graph colouring. dfs /bfs
-//double direction graph
+//Undirected graph
 public class Bipartition {
     public static void main(String[] args) {
         int n = 5;
