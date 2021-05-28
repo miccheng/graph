@@ -10,6 +10,9 @@ public class RemoveNthFromEnd {
         removeNthFromEnd(node1,2);
     }
 
+    //*** Key: To identify nth node, we use runners approach to maintain a gap of n between 2 pointers,
+    // but to deleted the Nth node, we need to keep track of one node ahead of it-->(n+1) node.
+    // so we will need to maintain a gap of (n+1)
     public static ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode dummyHead = new ListNode(0);
         ListNode start = dummyHead;
@@ -17,8 +20,8 @@ public class RemoveNthFromEnd {
         //hook up with given list
         dummyHead.next=head;
 
-        //maintain a gap of n distance between two pointers
-        for (int i = 0; fast != null && i <= n; i++) {
+        //maintain a gap of n+1 distance between two pointers
+        for (int i = 0; fast != null && i <n+1; i++) {//move (n+1) step
             fast = fast.next;
         }
 
@@ -30,6 +33,16 @@ public class RemoveNthFromEnd {
         //Skip the desired node
         start.next = start.next.next;
         return dummyHead.next;
+    }
+
+    //***Solution 2: recursive. base case return 0
+    public static int identifyNthFromEnd(ListNode head, int k) {
+        if (head == null) return 0;
+        int sum = identifyNthFromEnd(head.next, k) + 1;
+        if (sum == k) {
+            System.out.println(head.val);
+        }
+        return sum;
     }
 
       public static class ListNode {

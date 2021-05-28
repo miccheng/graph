@@ -28,7 +28,7 @@ public class Permutation {
 
         for (int i = 0; i < nums.length; i++) {
             int current = nums[i];
-            if (path.add(current)) {//*****
+            if (path.add(current)) {//***** use data structure to replace recording of index
                 permutationRecursive(nums, result, path);
                 path.remove(current);
             }

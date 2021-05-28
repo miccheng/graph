@@ -2,7 +2,7 @@ package com.example.leetcode.datastructure.design;
 
 import java.util.HashMap;
 import java.util.Map;
-
+//order maintain in linked list: using dummy head dummy tail. most recently visited in front, old at back
 public class LRUCache {
     Node head=new Node(0,0);
     Node tail=new Node(0,0);
@@ -25,7 +25,7 @@ public class LRUCache {
             return -1;
         }
     }
-
+    //API exposed to user. insert && remove, then insert
     public void put(int key, int value) {//updating and shift the node by removing and add
         if (map.containsKey(key)) remove(map.get(key));
         if (map.size() == cache_capcity) remove(tail.prev);//check capacity

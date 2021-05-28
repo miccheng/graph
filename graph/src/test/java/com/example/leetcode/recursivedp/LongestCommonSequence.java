@@ -1,10 +1,16 @@
 package com.example.leetcode.recursivedp;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class LongestCommonSequence {
     public static void main(String args[]) {
         String text1 = "abcde";
         String text2 = "ace";
         longestCommonSubsequence(text1,text2);
+
+        Map<Integer, Integer> map=new HashMap<>();
     }
 
     public static int longestCommonSubsequence(String text1, String text2) {

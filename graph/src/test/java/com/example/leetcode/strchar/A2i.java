@@ -1,4 +1,4 @@
-package com.example.leetcode.greedy.strchar;
+package com.example.leetcode.strchar;
 
 
 //count[charAt(i)-'a'] problem: refer to anagram, 1st non repeating character

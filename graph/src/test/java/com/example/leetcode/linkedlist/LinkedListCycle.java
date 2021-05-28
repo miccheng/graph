@@ -8,12 +8,18 @@ public class LinkedListCycle {
         ListNode slow = head;
         ListNode fast = head;
 
-        while (slow != null || fast.next != null) {
+        while (fast != null || fast.next != null) {
             if (slow == fast) return false;
             slow = slow.next;
             fast = fast.next.next;
         }
         return true;
+
+//        while (true) {
+//            tortoise = nums[tortoise];
+//            hare = nums[nums[hare]];
+//            if (tortoise == hare) break;
+//        }
     }
 
 //    https://leetcode.com/problems/linked-list-cycle-ii/

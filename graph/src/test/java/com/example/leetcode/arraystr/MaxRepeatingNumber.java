@@ -1,4 +1,4 @@
-package com.example.leetcode.array;
+package com.example.leetcode.arraystr;
 
 // O(n) time and O(1) space
 public class MaxRepeatingNumber {
@@ -8,7 +8,7 @@ public class MaxRepeatingNumber {
         int k = 8;
     }
 
-    //the max repeated number will be the index at which number at operated the most
+    //****the max repeated number will be the index at which number at operated the most
     public static int maxRepeating(int arr[], int n, int k) {
         // Iterate though input array, for every element
         // arr[i], increment arr[arr[i]%k] by k

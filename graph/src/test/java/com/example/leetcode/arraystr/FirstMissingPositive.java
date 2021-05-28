@@ -1,4 +1,4 @@
-package com.example.leetcode.array;
+package com.example.leetcode.arraystr;
 
 public class FirstMissingPositive {
     public static void main(String[] args) {
