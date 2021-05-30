@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class DeleteDuplicate {
-    //Solution 1: hash
+    //Solution 1: hash. delete node. have to preserve the node ahead of it.
     public void deleteDup(ListNode node){
         ListNode previous = new ListNode(-1);
         Set<Integer> set = new HashSet<>();

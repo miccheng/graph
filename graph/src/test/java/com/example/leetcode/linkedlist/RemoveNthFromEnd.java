@@ -14,25 +14,24 @@ public class RemoveNthFromEnd {
     // but to deleted the Nth node, we need to keep track of one node ahead of it-->(n+1) node.
     // so we will need to maintain a gap of (n+1)
     public static ListNode removeNthFromEnd(ListNode head, int n) {
-        ListNode dummyHead = new ListNode(0);
-        ListNode start = dummyHead;
-        ListNode fast = dummyHead;
-        //hook up with given list
-        dummyHead.next=head;
+        ListNode slow = head;
+        ListNode fast = head;
+        //preserve head
+        ListNode start=head;
 
-        //maintain a gap of n+1 distance between two pointers
+        //identify (n+1) from end node. Maintain a gap of (n+1) distance between two pointers
         for (int i = 0; fast != null && i <n+1; i++) {//move (n+1) step
             fast = fast.next;
         }
 
         while (fast != null) {
             fast = fast.next;
-            start = start.next;
+            slow = slow.next;
         }
 
         //Skip the desired node
-        start.next = start.next.next;
-        return dummyHead.next;
+        slow.next = slow.next.next;
+        return start;
     }
 
     //***Solution 2: recursive. base case return 0

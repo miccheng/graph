@@ -3,7 +3,11 @@ package com.example.leetcode.linkedlist;
 import java.util.HashSet;
 
 public class IntersectionPointOfLinkedlist {
-    //solution O(n) time and O(1) space
+    //How to determine whether two list has intersection? compare their last node!
+
+    //Solution 1: hash the nodes
+    //Solution 2: run through both linkedList, get their length, and advance the pointer on the longer one
+    //solution 3: with O(n) time and O(1) space
     //join two lists together to remove the obstacle of len1 !=len2
     public static Node getIntersectionNodeBest(Node headA, Node headB) {
         if(headA == null || headB == null) return null;

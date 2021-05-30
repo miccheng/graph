@@ -20,6 +20,7 @@ public class LinkedListCycle {
 //            hare = nums[nums[hare]];
 //            if (tortoise == hare) break;
 //        }
+//        if (fast=null||fast.next==null) return null;//no collision found
     }
 
 //    https://leetcode.com/problems/linked-list-cycle-ii/

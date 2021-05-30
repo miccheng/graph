@@ -5,7 +5,7 @@ public class AddTwoNumbers {
         ListNode dummyHead = new ListNode(-1);
         ListNode head = dummyHead;
         int carry = 0;
-        while (l1 != null || l2 != null) {
+        while (l1 != null || l2 != null) {//wrong-> carryover has to be checked too. refer to sumlist
             int sum = 0;
             if (l1 != null && l2 != null) {
                 sum = l1.val + l2.val + carry;
