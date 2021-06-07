@@ -31,18 +31,19 @@ public class FindAllAnagramsInString {
                 map.put(c, map.get(c) - 1);
                 if (map.get(c) == 0) count--;
             }
-
             end++;//***move end forward
 
+            if(count>0) continue;
+
             //restore the map
+            //***********keep looping the until count>0 to shave the unnecessary in front
             while (count == 0) {
                 char temp = s.charAt(start);
                 if (map.containsKey(temp)) {
                     map.put(temp, map.get(temp) + 1);
                     if (map.get(temp) > 0) count++;
                 }
-
-                //*******************shave the unnecessary in front
+                //anagram is supposed to be at same length. no extra alphabet mixing
                 if (end - start == t.length()) {
                     result.add(start);
                 }

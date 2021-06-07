@@ -1,11 +1,16 @@
 package com.example.leetcode.binarysearch;
 
+import java.util.HashMap;
+import java.util.stream.Collectors;
+
 public class MedianOfTwoSortedArray {
 
     public static void main(String[] args) {
         int nums1[] = {2};
         int nums2[] = {1, 3};
         findMedianSortedArrays(nums1, nums2);
+        HashMap<Integer, Integer> map = new HashMap<>();
+        long count = map.entrySet().stream().filter(e -> e.getValue() > 2).count();
     }
 
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {

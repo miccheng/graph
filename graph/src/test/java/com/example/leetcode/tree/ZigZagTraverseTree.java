@@ -2,7 +2,7 @@ package com.example.leetcode.tree;
 
 import java.util.*;
 
-//TODO
+
 public class ZigZagTraverseTree {
 
     public static void main(String[] args) {
@@ -42,7 +42,7 @@ public class ZigZagTraverseTree {
         return result;
     }
 
-    
+    //TODO
     public static List<TreeNode> printZigZagTraversal(TreeNode root) {
         List<TreeNode> result = new ArrayList<>();
         if (root == null) return result;

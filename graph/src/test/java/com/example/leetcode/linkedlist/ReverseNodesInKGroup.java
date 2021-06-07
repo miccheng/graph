@@ -11,7 +11,7 @@ public class ReverseNodesInKGroup {
         reverseKGroup(node1,2);
     }
 
-    //Key: join the reversed list klast to the next group kth node. And Klast is the start of the initial list
+    //Key: join the reversed list klast -->next kstart
     public static ListNode reverseKGroup(ListNode head, int k) {
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
@@ -21,7 +21,7 @@ public class ReverseNodesInKGroup {
             // Starting of each reversed list, it will become the last after reversing
             ListNode klast = tempHead;
             int num = k;
-            // Jump k
+            // the head for next group loop
             while (num > 0 && tempHead != null) {
                 tempHead = tempHead.next;
                 num--;
@@ -34,7 +34,7 @@ public class ReverseNodesInKGroup {
             // start of each reversed group
             ListNode kstart = reverse(klast, k);
 
-            // Use previous's next to point to curr reversed
+            //
             prev.next = kstart;//***join
             // Set prev to current rev end.
             prev = klast;

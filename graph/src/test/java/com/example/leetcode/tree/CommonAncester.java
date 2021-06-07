@@ -4,6 +4,7 @@ public class CommonAncester {
 //    3     Given Binary Tree, find the Lowest Common Ancestor
 //  5   1
 // 6 2 0 8
+    //preorder
     //solution1: ***lift up the founded node up along the tree
     public static TreeNode lowestCommonAncestorOfTree(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) return root;
@@ -12,7 +13,7 @@ public class CommonAncester {
         TreeNode left = lowestCommonAncestorOfTree(root.left, p, q);
         TreeNode right = lowestCommonAncestorOfTree(root.right, p, q);
 
-        if (left != null && right != null) return root;
+        if (left != null && right != null) return root;//where it splits
         else if(left == null && right == null) return null;
         return left == null ? right : left;
     }

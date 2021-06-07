@@ -21,18 +21,20 @@ public class SubtreeOfTree {
 //solution 1
     public boolean isSubtree(TreeNode s, TreeNode t) {
         if (s == null)
-            return false;
-        else if (isSame(s, t))//find the matching head node
+            return false;//big tree empty, substree still not found
+        else if (s.val == t.val && matchTree(s, t))//find the matching head node
             return true;
         return isSubtree(s.left, t) || isSubtree(s.right, t);
     }
 
-    private boolean isSame(TreeNode s, TreeNode t) {
-        if (s == null || t == null)
-            return s == t;
+    private boolean matchTree(TreeNode s, TreeNode t) {
+        if (s == null && t == null)
+            return true;
+        else if(s==null || t==null)
+            return false;
         else if (s.val != t.val)
             return false;
-        return isSame(s.left, t.left) && isSame(s.right, t.right);
+        return matchTree(s.left, t.left) && matchTree(s.right, t.right);
     }
 
 

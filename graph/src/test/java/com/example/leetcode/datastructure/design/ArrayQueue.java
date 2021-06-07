@@ -20,7 +20,7 @@ public class ArrayQueue<T> {
 
     public void offer(T obj) {
         if (isFull()) return;
-        if (isEmpty())
+        if (isEmpty())//move both when only have 1 ele
             front = rear = 0;
         else
             rear = rear + 1;
@@ -30,7 +30,7 @@ public class ArrayQueue<T> {
     public T poll() {
         if (isEmpty()) return null;
         T ele = (T) data[front];
-        if (rear == front) {//only 1 ele in it, after polling set both to -1
+        if (rear == front) {//only 1 ele in it, after polling its empty, so set both to -1
             rear = -1;
             front = -1;
         } else {

@@ -3,11 +3,19 @@ package com.example.leetcode.datastructure.design;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+// Example:
+// push(5): stack is {5}, min is 5
+// push(6); stack is {6,5}, min is 6
+// push(3): stack is {3,6,5}, min is 3
+// push(7): stack is {7,3,6,5}, min is 3
+// pop(7): stack is {3,6,5}, min is 3
+// pop(3): stack is {6,5}, min is 5
+// Constraints: operation all are O(1) time
 public class MinStack {
-    //Solution 1: O(1) time && O(1) space
-    //by keeping track of the previous ele pushed
-    private Node head;
 
+    //Solution 1: by keeping track of the previous ele pushed
+    //***problem: when the stack gets really large, we are keeping track of the min for every single ele
+    private Node head;
     public void pushh(int val) {
         if (head == null) {
             head = new Node(val, val);
@@ -15,15 +23,12 @@ public class MinStack {
             head = new Node(val, Math.min(val, head.min), head);
         }
     }
-
     public void popp() {
         head = head.next;
     }
-
     public int topp() {
         return head.val;
     }
-
     public int getMinn() {
         return head.min;
     }
@@ -32,11 +37,9 @@ public class MinStack {
         int val;
         int min;
         Node next;
-
         private Node(int val, int min) {
             this(val, min, null);
         }
-
         private Node(int val, int min, Node node) {
             this.val = val;
             this.min = min;
@@ -45,7 +48,7 @@ public class MinStack {
     }
 
 
-    //solution 2: use 2 stack with O(1) time && O(n) space
+    //Solution 2: use 2 stack with O(1) time && O(n) space
     Deque<Integer> stack = new ArrayDeque<>();
     Deque<Integer> min_stack = new ArrayDeque<>();
 

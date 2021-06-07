@@ -1,6 +1,7 @@
 package com.example.leetcode.tree;
 
 //https://leetcode.com/problems/binary-tree-maximum-path-sum/
+// path and subtree both are counted as path
 public class BinaryTreeMaxPathSum {
     private int max = Integer.MIN_VALUE;
 

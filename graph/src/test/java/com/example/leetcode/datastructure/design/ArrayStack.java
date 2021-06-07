@@ -3,6 +3,8 @@ package com.example.leetcode.datastructure.design;
 import java.util.Arrays;
 import java.util.EmptyStackException;
 
+//***Implementation of stack using array
+//operation are on append/remove to the back of array
 public class ArrayStack<T> {
     private int capacity;
     private Object[] data;

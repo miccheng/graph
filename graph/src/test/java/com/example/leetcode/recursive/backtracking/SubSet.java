@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Subset {
+public class SubSet {
     public static void main(String[] args) {
         int []nums = {1,2,3};
         subsets(nums);
@@ -19,6 +19,7 @@ public class Subset {
 
     private static void backtrack(List<List<Integer>> list , List<Integer> tempList, int [] nums, int start){
         list.add(new ArrayList<>(tempList));
+
         for(int i = start; i < nums.length; i++){
             tempList.add(nums[i]);
             backtrack(list, tempList, nums, i + 1);

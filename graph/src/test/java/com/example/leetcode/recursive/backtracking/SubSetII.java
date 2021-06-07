@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class SubSetIIWithDuplicates {
+public class SubSetII {
 
     public static void main(String[] args) {
         int[] nums={1,2,2};
@@ -24,10 +24,10 @@ public class SubSetIIWithDuplicates {
         result.add(new ArrayList<>(path));
 
         for (int j = index; j < nums.length; j++) {
-            if(j > index && nums[j] == nums[j-1]) continue; // skip duplicates on the condition of nums is sorted
+            if (j > index && nums[j] == nums[j - 1]) continue; // skip duplicates on the condition of nums is sorted
             path.add(nums[j]);
-            generateSub(j+1,nums,path,result);
-            path.remove(path.size()-1);
+            generateSub(j + 1, nums, path, result);
+            path.remove(path.size() - 1);
         }
 
     }

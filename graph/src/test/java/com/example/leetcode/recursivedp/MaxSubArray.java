@@ -1,5 +1,6 @@
 package com.example.leetcode.recursivedp;
 
+//similar to max product subarray && longest Increasing subsequence
 public class MaxSubArray {
     public static void main(String[] args) {
         int arr[] = {-2, 2, 5, -11, 6};
