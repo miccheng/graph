@@ -14,7 +14,7 @@ public class EasyGS {
                 {"Jessica", "99"}
         };
 
-        //find the 2nd largest number in the array
+//        find the 2nd largest number in the array
         int arr[] = {12, 35, 1, 10, 34, 1};
 
         //highestAverage
@@ -31,7 +31,6 @@ public class EasyGS {
         induction("abcd",234);
         deduction("aabbbccccd",2341);
     }
-
 
 
     public static Integer bestAverageGrade(String[][] scores)
@@ -74,6 +73,7 @@ public class EasyGS {
 
         Integer value1 = map.entrySet().stream().max(Map.Entry.comparingByValue()).orElse(null).getValue();
         Integer integer = map.entrySet().stream().max(Comparator.comparing(Map.Entry::getValue)).orElse(null).getValue();
+        Integer integer2 = map.entrySet().stream().map(Map.Entry::getValue).max(Comparator.comparingInt(Integer:: intValue)).get();
         return value1;
     }
 

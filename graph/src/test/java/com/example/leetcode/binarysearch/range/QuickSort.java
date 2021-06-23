@@ -1,37 +1,34 @@
 package com.example.leetcode.binarysearch.range;
 
 public class QuickSort {
-    public static void quicksort(int[] arr) {
-        qs(arr, 0, arr.length - 1);
-    }
 
-    public static void qs(int[] arr, int l, int r) {
-        if (l >= r) {//empty or 1 element only
+    public void quickSort(int[] arr, int start, int end) {
+        if (start >= end)
             return;
-        }
-        int p = partition(arr, l, r);
-
-        qs(arr, l, p - 1);//left
-        qs(arr, p + 1, r);//right
+        int pivot = arr[start];
+        int index = partition(arr, start, end, pivot);
+        quickSort(arr, start, index);
+        quickSort(arr, index + 1, end);
     }
 
-    public static int partition(int[] arr, int l, int r) {
-        int pivot = arr[r];
-        int i = l - 1;
-        for (int j = l; j < r; j++) {
-            if (arr[j] < pivot) {
-                i += 1;
+    private int partition(int[] arr, int start, int end, int pivot) {
+        int i = start;
+        int j = end;
+        while (i < j) {
+            while (arr[i] < pivot) {
+                i++;
+            }
+            while (arr[j] > pivot) {
+                j--;
+            }
+            if (i < j) {//***must apply before sort
                 int temp = arr[i];
                 arr[i] = arr[j];
                 arr[j] = temp;
+                i++;
+                j--;
             }
         }
-        //put pivot in the middle
-        int temp = arr[i + 1];
-        arr[i + 1] = arr[r];
-        arr[r] = temp;
-        return i + 1;
+        return i - 1;
     }
-
-
 }

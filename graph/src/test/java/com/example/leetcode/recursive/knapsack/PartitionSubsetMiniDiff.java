@@ -1,4 +1,4 @@
-package com.example.leetcode.recursive.partitionsubset;
+package com.example.leetcode.recursive.knapsack;
 
 //    https://leetcode.com/problems/last-stone-weight-ii/
 //equals to partition array into 2 subset to get the mini diff

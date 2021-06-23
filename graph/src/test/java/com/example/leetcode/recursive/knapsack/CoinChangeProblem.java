@@ -1,4 +1,4 @@
-package com.example.leetcode.recursivedp;
+package com.example.leetcode.recursive.knapsack;
 
 public class CoinChangeProblem {
     //essentially, it is an unbounded knapsack problem--> bounded knapsack: partition equal subset

@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 
 public class LetterCombination {
     public static void main(String args[]){
-        String digits="234";
-        collectAllCombination(digits);
+        String digits="23";
+        letterCombinations(digits);
     }
 
     private static void collectAllCombination(String digits) {
@@ -27,7 +27,7 @@ public class LetterCombination {
         List<String> result = new ArrayList<>();
         //base case
         if (index >= digits.length()) {
-            result.add("");
+            result.add("");//must add ""
             return result;
         }
 
@@ -92,54 +92,32 @@ public class LetterCombination {
         return result;
     }
 
-    public List<String> findCombinationsIt(String digits) {
-        List<String> result = new ArrayList<String>();
 
-        if ("".equals(digits)) return new ArrayList<String>();
 
-        for (int i = 0; i < digits.length(); i++) {
-            String current = String.valueOf(digits.charAt(i)); // 2
-            List<String> letters = map.get(current); // a, b, c
-            if (i == 0) {
-                result.addAll(letters);
-            } else {
-                int size = letters.size();
-                List<String> temp = new ArrayList<>();
-                for (int j = 0; j < size; j++) {//iterate current letter. apply current letter to each ele of the result
-                    String s = letters.get(j);
-                    List<String> collect = result.stream().map(e -> e + s).collect(Collectors.toList());
-                    temp.addAll(collect);
-                }
-                result = temp;
-            }
-        }
+    static String[][] mapping={{},{},{"a","b","c"},{"d","e","f"},{"g","h","i"},{"j","k","l"},{"m","n","o"},{"p","q","r","s"},{"t","u","v"},{"w","x","y","z"}};
 
-        return result;
+    public static List<String> letterCombinations(String digits) {
+        if("".equals(digits)) return new ArrayList<String>();
+        return recursive(digits);
     }
 
-    public String convert2RomanNum(String number) {
-        List<String> digits = new ArrayList<>();
-        int length = number.length();
-        for (int i = 0; i < length; i++) {
-            int digit = number.charAt(i) - '0';
-            String digitStr = String.valueOf(digit);
-            digits.add(digitStr);
-        }
-        //collectors join
-        String str = digits.stream().collect(Collectors.joining());
-
-        List<Integer> integers = new ArrayList<>();
-        Integer integerNum = Integer.valueOf(number);
-        for (int i = 0; i<length;i++) {
-            int t = integerNum / 1000;
-            integers.add(t);
-            integerNum = integerNum % 1000;
+    public static List<String> recursive(String digits){
+        List<String> res=new ArrayList<>();
+        if("".equals(digits)) {
+            res.add("");
+            return res;
         }
 
-        int[] ints = number.chars().map(Character::getNumericValue).toArray();
-        return str;
+        String current=digits.substring(0,1);
+        String remain=digits.substring(1);
+        List<String> tmp=recursive(remain);
+
+        String [] prefix=mapping[Integer.valueOf(current)];
+        for(String str: prefix){
+            List<String> result=tmp.stream().map(e->str+e).collect(Collectors.toList());
+            res.addAll(result);
+        }
+        return res;
     }
-
-
 
 }

@@ -1,6 +1,13 @@
 package com.example.leetcode.recursive.backtracking;
 
+//unique
 //can't reuse element && have duplicate ele
+//Input: candidates = [2,5,2,1,2], target = 5
+//        Output:
+//        [
+//        [1,2,2],
+//        [5]
+//        ]
 
 import java.util.ArrayList;
 import java.util.Arrays;

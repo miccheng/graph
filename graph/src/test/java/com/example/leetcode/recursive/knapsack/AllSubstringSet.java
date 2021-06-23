@@ -1,4 +1,4 @@
-package com.example.leetcode.recursivedp;
+package com.example.leetcode.recursive.knapsack;
 
 import org.assertj.core.util.Lists;
 
@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 //Recursive:take or not ===> swap or not,choose or not.knapsack,scramble string
 //Collecting result: collect all the edges along the branch. All construct word

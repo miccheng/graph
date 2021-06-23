@@ -19,6 +19,7 @@ public class Permutation {
         return result;
     }
 
+    //use list or set to keep track of the used numbers
     private static void permutationRecursive(int[] nums, List<List<Integer>> result, Set path) {
         //base case
         if (path.size() == nums.length) {
@@ -28,7 +29,8 @@ public class Permutation {
 
         for (int i = 0; i < nums.length; i++) {
             int current = nums[i];
-            if (path.add(current)) {//***** use data structure to replace recording of index
+//            if(path.contains(nums[i])) continue;
+            if (path.add(current)) {//***** use set rather than list to keep track of used ele
                 permutationRecursive(nums, result, path);
                 path.remove(current);
             }

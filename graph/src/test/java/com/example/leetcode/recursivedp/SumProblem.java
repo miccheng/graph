@@ -1,4 +1,4 @@
-package com.example.leetcode.greedy.recursivedp;
+package com.example.leetcode.recursivedp;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,4 @@
-package com.example.leetcode.recursivedp;
-
-import java.util.Arrays;
+package com.example.leetcode.recursive.knapsack;
 
 //recursive:take or not===>swap or not ,all subset of a string(power set),scramble string
 //dp table: row as the size of weights/profit, column will be from 0-capacity

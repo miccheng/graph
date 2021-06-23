@@ -36,12 +36,15 @@ public class HIndex {
     public static int countSortHIndex(int[] citations) {
         int n = citations.length;
         int count[] = new int[citations.length + 1];
+        //1. count frequency
         for (int cita : citations) {
             count[cita]++;
         }
+        //sum count
         for (int i = 1; i < citations.length + 1; i++) {
             count[i] = count[i - 1] + count[i];
         }
+
         int shifted[] = new int[citations.length + 1];//to map frequency array to index array
         shifted[0] = 0;
         System.arraycopy(count, 0, shifted, 1, n);

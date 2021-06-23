@@ -1,5 +1,7 @@
 package com.example.leetcode.recursive.backtracking;
 
+import com.example.leetcode.tree.TreeNode;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +19,12 @@ public class SubSet {
         return list;
     }
 
+
+
+
+    //solution 1: backtrack
     private static void backtrack(List<List<Integer>> list , List<Integer> tempList, int [] nums, int start){
+        //base case
         list.add(new ArrayList<>(tempList));
 
         for(int i = start; i < nums.length; i++){
@@ -26,4 +33,8 @@ public class SubSet {
             tempList.remove(tempList.size() - 1);
         }
     }
+
+    //solution2:can also be solved using knapsack thinking
+    //solution 3: iterative with append
+    //{a,b}, {}{a}-->{}{a}+{b}{ab}
 }

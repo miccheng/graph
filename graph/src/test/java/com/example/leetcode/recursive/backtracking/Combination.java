@@ -25,7 +25,7 @@ public class Combination {
 
         for(int i=num; i<=n; i++){
             tempList.add(i);
-            backtrack(res,tempList,n,k,i+1);
+            backtrack(res,tempList,n,k,i+1);//use i+1 to make sure it doesn't go back
             tempList.remove(tempList.size()-1);
         }
     }

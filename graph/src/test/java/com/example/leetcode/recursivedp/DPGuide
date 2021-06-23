@@ -1,0 +1,14 @@
+1> use - instead of + to avoid int overflow
+2> 1d array vs 2d array
+
+NOT unique: 1d array
+    1 --> 1 --> 1 --> 1 --> (0)
+    1 --> 1 --> 2 --> (0)
+    1 --> 2 --> 1 --> (0)
+
+Unique: 2d array
+    2 --> 1 --> 1 --> (0)
+
+typical example: coin change problems vs count of comibinationIV
+
+

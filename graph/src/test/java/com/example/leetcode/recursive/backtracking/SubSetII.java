@@ -19,12 +19,12 @@ public class SubSetII {
         return result;
     }
 
-    private static void generateSub(int index,int[] nums, ArrayList<Integer> path, List<List<Integer>> result) {
+    private static void generateSub(int start,int[] nums, ArrayList<Integer> path, List<List<Integer>> result) {
         //base case
         result.add(new ArrayList<>(path));
 
-        for (int j = index; j < nums.length; j++) {
-            if (j > index && nums[j] == nums[j - 1]) continue; // skip duplicates on the condition of nums is sorted
+        for (int j = start; j < nums.length; j++) {
+            if (j > start && nums[j] == nums[j - 1]) continue; // arrays must be sorted ahead
             path.add(nums[j]);
             generateSub(j + 1, nums, path, result);
             path.remove(path.size() - 1);
@@ -33,6 +33,27 @@ public class SubSetII {
     }
 
     //subset with duplicate
+    private static void allSubset(int[] nums, int index, List<Integer> path, List<List<Integer>> result) {
+        //base case
+        if (index >= nums.length) {
+            result.add(new ArrayList<>(path));//****must new array to wrap path instead of using path directly
+            return;
+        }
+        //take
+        path.add(nums[index]);
+        allSubset(nums, index + 1, path, result);
 
+        path.remove(path.size() - 1);
+
+        //repeated value, so don't need to proceed.
+        if (index > 0
+                && path.size() > 0
+                && nums[index] == path.get(path.size() - 1)) {
+            return;
+        }
+
+        allSubset(nums, index + 1, path, result);
+
+    }
 
 }

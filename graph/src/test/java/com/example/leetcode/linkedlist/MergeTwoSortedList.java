@@ -3,6 +3,7 @@ package com.example.leetcode.linkedlist;
 public class MergeTwoSortedList {
     //***Solution 1: iterate linkedlist
     public ListNode mergeTwoList(ListNode l1, ListNode l2) {
+        //edge cases!!!
         if(l1==null) return l2;
         if(l2==null) return l1;
 
@@ -21,14 +22,12 @@ public class MergeTwoSortedList {
         }
 
         //if one of the list is not exhausted yet
-        while (l1 != null) {
-            current = l1.next;
-            l1 = l1.next;
+        if (l1 != null) {
+            current = l1;
         }
 
-        while (l2 != null) {
-            current = l2.next;
-            l2 = l2.next;
+        if (l2 != null) {
+            current = l2;
         }
 
         return dummyHead.next;

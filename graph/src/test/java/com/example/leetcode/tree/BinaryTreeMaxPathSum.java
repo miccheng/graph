@@ -1,8 +1,13 @@
 package com.example.leetcode.tree;
 
+import java.util.HashMap;
+import java.util.Map;
+
 //https://leetcode.com/problems/binary-tree-maximum-path-sum/
 // path and subtree both are counted as path
+
 public class BinaryTreeMaxPathSum {
+    //***must store as property. !input parameter
     private int max = Integer.MIN_VALUE;
 
     public int maxPathSum(TreeNode root) {
@@ -17,4 +22,5 @@ public class BinaryTreeMaxPathSum {
         max = Math.max(max, left + right + root.val);
         return Math.max(left, right) + root.val;
     }
+
 }

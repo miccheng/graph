@@ -20,6 +20,10 @@ public class Recap {
         String target = "le";
         List<List<String>> lists = constructWord(target, wordBank);
 
+        List<Integer> intList = Arrays.asList(1,2);
+        Integer integer = intList.stream().min((a,b)->a-b).get();
+        Integer integer1 = intList.stream().reduce((a, b) -> a + b).get();
+
         String str = "abcd";
         List<String> subsets = subsetAll(str);
 

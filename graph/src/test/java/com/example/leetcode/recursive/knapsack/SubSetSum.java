@@ -1,4 +1,4 @@
-package com.example.leetcode.recursive.partitionsubset;
+package com.example.leetcode.recursive.knapsack;
 
 import org.assertj.core.util.Lists;
 

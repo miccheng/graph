@@ -17,6 +17,8 @@ public class TraverseTree {
     //preorder: iterative
     public void iterative(TreeNode root) {
         Deque<TreeNode> stack = new ArrayDeque<TreeNode>();
+        if(root==null) return ;
+
         stack.push(root);
         while (!stack.isEmpty()) {
             TreeNode node = stack.pop();
@@ -33,7 +35,7 @@ public class TraverseTree {
         while (!queue.isEmpty()) {
             TreeNode node = queue.remove();
             list.add(node);
-            if (node.left != null) queue.add(node.left);
+            if (node.left != null) queue.add(node.left);//add(), nothing else
             if (node.right != null) queue.add(node.right);
         }
 //        list.stream().sorted(Comparator.comparing());

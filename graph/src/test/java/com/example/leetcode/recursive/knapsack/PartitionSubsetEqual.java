@@ -1,4 +1,7 @@
-package com.example.leetcode.recursive.partitionsubset;
+package com.example.leetcode.recursive.knapsack;
+
+import java.util.ArrayList;
+import java.util.Optional;
 
 public class PartitionSubsetEqual {
     //A variation of 0/1 knapsack problem && subset problem. Take mean it goes into s1, else it goes s2
