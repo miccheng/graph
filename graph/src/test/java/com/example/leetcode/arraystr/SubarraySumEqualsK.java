@@ -1,4 +1,4 @@
-package com.example.leetcode.slidingwindow;
+package com.example.leetcode.arraystr;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,8 +9,10 @@ public class SubarraySumEqualsK {
         int[] nums = {1, 2, 3};
         int k = 3;
         subarraySum(nums, k);
+
     }
 
+    //usage of prefix sum and map
     public static int subarraySum(int[] nums, int k) {
         if (nums.length == 0) return 0;
 
@@ -26,5 +28,8 @@ public class SubarraySumEqualsK {
         }
         return count;
     }
+
+
+
 
 }

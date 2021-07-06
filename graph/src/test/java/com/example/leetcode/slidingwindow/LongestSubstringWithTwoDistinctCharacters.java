@@ -1,47 +1,47 @@
 package com.example.leetcode.slidingwindow;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class LongestSubstringWithTwoDistinctCharacters {
-    //"eceba" k=2  "ece"
-    public int lengthOfLongestSubstringTwoDistinct(String s) {
-        int max = Integer.MIN_VALUE;
-        int start = 0;
-        int end = 0;
-        Set<Character> set = new HashSet<>();
-        while (end < s.length()) {
-            char c = s.charAt(end);
-            set.add(c);
-            end++;
-
-            while (set.size() > 2) {
-                set.remove(s.charAt(start));
-                start++;
-            }
-            max = Math.max(max, end - start);
-        }
-        return max;
+    public static void main(String[] args) {
+        //"eceba" k=2  "ece"
+        lengthOfLongestSubstringKDistinct("eceba",2 );
     }
 
-    public int lengthOfLongestSubstringKDistinct(String s) {
-        int i = 0;
-        int j = 0;
-        int maxLen = Integer.MIN_VALUE;
-        Set<Character> set = new HashSet<>();
 
-        while (j < s.length()) {
-            char c = s.charAt(j);
-            set.add(c);
-            while (set.size() > 2) {
-                set.remove(s.charAt(i));
+    public static int lengthOfLongestSubstringKDistinct(String s, int k) {
+        if(s==null||s.length()==0) return 0;
+
+        int i=0;
+        int j=0;
+        Map<Character, Integer> map=new HashMap<>();
+        int count=map.size();
+        int len=s.length();
+        int max=0;
+
+        while(j<len) {
+            char cur = s.charAt(j);
+            map.put(cur, map.getOrDefault(cur, 0) + 1);
+            count = map.size();
+
+            while (count > k) {
+                char pre = s.charAt(i);
+                map.put(pre, map.get(pre) - 1);
+                if (map.get(pre) == 0) map.remove(pre, 0);
+                count = map.size();
                 i++;
             }
-            maxLen = Math.max(maxLen, j - i + 1);
+            if (j - i + 1 > max) {
+                max = j - i + 1;
+            }
             j++;
         }
 
-        return maxLen;
+        return max;
     }
+
 
 }

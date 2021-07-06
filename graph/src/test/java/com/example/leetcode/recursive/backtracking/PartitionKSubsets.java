@@ -4,15 +4,9 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 public class PartitionKSubsets {
-    public static void main(String[] args) {
-        int [] nums = {4,3,2,3,5,2,1};
-        int k = 4;
-//        int [] nums = {1,2,3,4};
-//        int k =4;
-        canPartitionKSubsets(nums,k);
-    }
-
-
+    //bit mask +dp
+//    [4,3,2,3,5,2,1], k = 4
+    //broken now without masking
     public static boolean canPartitionKSubsets(int[] nums, int k) {
         int sum = 0, maxNum = 0;
         for (int num : nums) {

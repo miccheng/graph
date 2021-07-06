@@ -1,9 +1,9 @@
-package com.example.leetcode.recursive.backtracking;
+package com.example.leetcode.recursive.knapsack;
 
 import java.util.*;
 
-// Diff from regular subset problem. See all substring subset. Used backtracking
-// Also look at permutation && combination problem
+// Diff from regular subset problem. See all substring subset which Used backtracking, this used knapsack idea
+// Also look at permutation && combination problem for backtracking
 public class SubsetOfArrayWithDuplicates {
     public static void main(String[] args) {
         int arr[] = {1, 2, 2, 3};

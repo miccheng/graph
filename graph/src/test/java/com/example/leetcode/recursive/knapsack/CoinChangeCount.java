@@ -1,9 +1,10 @@
 package com.example.leetcode.recursive.knapsack;
 
-public class CoinChangeProblem {
+public class CoinChangeCount {
     //essentially, it is an unbounded knapsack problem--> bounded knapsack: partition equal subset
 
     //how many ways to form it? count
+    //unbounded knapsack
     public int change(int amount, int[] coins) {
         int[][] dp = new int[coins.length+1][amount+1];
         dp[0][0] = 1;

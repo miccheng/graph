@@ -11,45 +11,41 @@ public class MinimumWindowSubstring {
     }
 
     public String minWindow(String s, String t) {
+        String result = "";
+        int resultLen = 0;
+
         Map<Character, Integer> map = new HashMap<>();
         for (char c : t.toCharArray()) {
             map.put(c, map.getOrDefault(c, 0) + 1);
         }
         int i = 0;
         int j = 0;
-        int head = 0;
-        int min = Integer.MAX_VALUE;
         int count = map.size();
+        int len = s.length();
 
-        while (j < s.length()) {
-            char endChar = s.charAt(j);
-            j++;
-            if (map.containsKey(endChar)) {
-                map.put(endChar, map.get(endChar) - 1);
-                if (map.get(endChar) == 0) count--;
+        while (j < len) {
+            char cur = s.charAt(j);
+            if (map.containsKey(cur)) {
+                map.put(cur, map.get(cur) - 1);
+                if (map.get(cur) == 0) count--;
             }
-            if (count > 0) continue;//advance j
+            j++;
+            if (count > 0) continue;
 
-            //*** cal maxLen, invalid map
-            while (count == 0) {
-                //min=Math.min(min,j-i);
-                if (j - i < min) {
-                    min = j - i;
-                    head = i;
+            while (i < len && count == 0) {
+                char pre = s.charAt(i);
+                if (map.containsKey(pre)) {
+                    map.put(pre, map.get(pre) + 1);
+                    if (map.get(pre) > 0) count++;
                 }
-
-                char startChar = s.charAt(i);
                 i++;
-                if (map.containsKey(startChar)) {
-                    map.put(startChar, map.get(startChar) + 1);
-                    if (map.get(startChar) > 0) count++;
-                }
+            }
+            if (j - i - 1 < resultLen) {
+                resultLen = j - i - 1;
+                result = s.substring(i - 1, j);
             }
         }
 
-        if (min == Integer.MAX_VALUE) return "";
-        return s.substring(head, head + min);
+        return result;
     }
-
-    
 }

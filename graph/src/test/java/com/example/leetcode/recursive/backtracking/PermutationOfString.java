@@ -29,6 +29,7 @@ public class PermutationOfString {
     }
 
     //Solution 1: backtracking
+    //mark take ele. here leverage set. array can be used as well
     private static void permutateShell(String input, List<String> result) {
         if (input.length() <= 1) return;
         permutate(input, new HashSet<Character>(), "", result);

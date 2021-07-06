@@ -1,4 +1,4 @@
-package com.example.leetcode.recursivestring;
+package com.example.leetcode.recursive.knapsack;
 
 //String character: groupAnagram problem, atoi. count letter frequency
 //Recursive:swap or not ===> take or not, knapsack,all subset of a string(power set)

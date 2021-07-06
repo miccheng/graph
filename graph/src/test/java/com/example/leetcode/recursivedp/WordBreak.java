@@ -12,27 +12,18 @@ public class WordBreak {
     }
 
     public static boolean wordBreak(String s, List<String> wordDict) {
-        Map <String, Integer> map=new HashMap<>();
-        for(String c:wordDict){
-            map.put(c, map.getOrDefault(c,0)+1);
-        }
-        // int len= s.length();
-        // boolean[] dp=new boolean[len+1];
-        //  dp[0]=true;
+        if (s == null) return false;
+        int len = s.length();
+        boolean dp[] = new boolean[len + 1];
+        dp[0] = true;
 
-
-        for(Map.Entry<String, Integer> e:map.entrySet()){
-            String c=e.getKey();
-            int i = s.indexOf(c);
-            if(i!=-1){
-                map.put(c,map.get(c)-1);
-                s=s.substring(0,i);
+        for (int i = 1; i <= len; i++) {
+            for (String str : wordDict) {
+                if (dp[i] == true && s.startsWith(str, i-1)) {
+                    dp[i + str.length()] = true;
+                }
             }
         }
-
-        for(Map.Entry<String, Integer> e:map.entrySet()){
-            if(e.getValue()>0) return false;
-        }
-        return true;
+        return dp[len];
     }
 }

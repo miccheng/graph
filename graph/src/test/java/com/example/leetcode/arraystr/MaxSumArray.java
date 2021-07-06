@@ -1,4 +1,4 @@
-package com.example.leetcode.twopointers;
+package com.example.leetcode.arraystr;
 //    Kadane's algo
 public class MaxSumArray {
     public static void main(String[] args) {

@@ -1,5 +1,6 @@
 package com.example.leetcode.recursive.knapsack;
 
+//bounded knapsack
 //recursive:take or not===>swap or not ,all subset of a string(power set),scramble string
 //dp table: row as the size of weights/profit, column will be from 0-capacity
 //when not enough capacity, then grid result will be 0 as minimum.

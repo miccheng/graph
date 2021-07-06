@@ -3,7 +3,7 @@ package com.example.leetcode.recursive.backtracking;
 import java.util.*;
 
 // no duplicate scenario: mark taken element to avoid it being taken again.
-// use linkedhashset to skip checking on marking
+// use linkedhashset for marking taken ele
 public class Permutation {
     public static void main(String[] args) {
         int[] nums = {1, 2, 3};

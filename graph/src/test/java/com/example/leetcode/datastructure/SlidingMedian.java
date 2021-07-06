@@ -30,7 +30,6 @@ public class SlidingMedian {
         medians[0]=caculateMedian(k);
 
 
-
         for(;i<len;i++){
             remove(nums[i-k]);
             addNum(nums[i]);

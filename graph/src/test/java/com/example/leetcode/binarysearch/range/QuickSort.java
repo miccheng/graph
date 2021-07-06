@@ -11,6 +11,7 @@ public class QuickSort {
         quickSort(arr, index + 1, end);
     }
 
+    //swap the ele to make smaller appear before bigger
     private int partition(int[] arr, int start, int end, int pivot) {
         int i = start;
         int j = end;
@@ -29,6 +30,8 @@ public class QuickSort {
                 j--;
             }
         }
+        String a="";
+        a.startsWith("0");
         return i - 1;
     }
 }

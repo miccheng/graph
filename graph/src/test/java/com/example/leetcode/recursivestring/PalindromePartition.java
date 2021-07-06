@@ -6,12 +6,44 @@ import java.util.*;
 
 //All sub set problem(power set)
 public class PalindromePartition {
-    public static void main(String args[]) {
-        String str = "aab";
-        List<List<String>> subsets = getAllSubsets(str);
-        System.out.println();
+    //version 1:
+    public List<List<String>> partition(String s) {
+        List<List<String>> result=new ArrayList<>();
+        recursive(s,new ArrayList<String>(),result);
+        return result;
     }
 
+    public void recursive(String s,List<String> path, List<List<String>> result){
+        if("".equals(s)) {
+            result.add(new ArrayList<>(path));
+            return;
+        }
+
+        for(int i=1;i<=s.length();i++){
+            String prefix=s.substring(0,i);
+            if(isPalindrome(prefix)){
+                path.add(prefix);
+                recursive(s.substring(i), path, result);
+                path.remove(path.size()-1);
+            }
+        }
+    }
+
+
+    public boolean isPalindrome(String s){
+        int i=0; int j=s.length()-1;
+        while(i<=j){
+            if(s.charAt(i)==s.charAt(j)){
+                i++;
+                j--;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+
+//version 2:
     private static List<List<String>> getAllSubsets(String target) {
         List<List<String>> results = Lists.newArrayList();
         //base case

@@ -15,16 +15,6 @@ public class AllSubstringSet {
     static String input = "abcd";
     static String str[] = {"a", "b", "c"};
 
-    public static void main(String args[]) {
-//        List<String> strings = Arrays.stream(split).collect(Collectors.toList());
-//        List<List<String>> result = getAllSub(0);
-//        getAllSubTab(input);
-//        System.out.println(result);
-//        List<String> comb = subsetAll("abc");
-        List<String> list = subsetAll("abc");
-        List<List<String>> lists = subsetAll2D(0);
-        System.out.println(lists);
-    }
 
     //(abc-->[abc,ab,bc,ac,a,b,c,""]
     private static List<String> subsetAll(String str) {
@@ -33,7 +23,6 @@ public class AllSubstringSet {
 
         //body
         List<String> resultList = new ArrayList<>();
-        //base cases
 
         //take
         String current = String.valueOf(str.charAt(0));
@@ -47,61 +36,24 @@ public class AllSubstringSet {
         return resultList;
     }
 
-    //(abc-->[[abc],[ab],[bc],[ac],[a],[b],[c],[""]]
-    private static List<List<String>> subsetAll2D(int index) {
+    // use i for base case, or length for base case
+    // (abc-->[[abc],[ab],[bc],[ac],[a],[b],[c],[""]]
+    private static void subsetAll2D(int i, List<String> path, List<List<String>> result) {
         List<List<String>> resultList = new ArrayList<>();
-        if (index >= str.length) {
-            List<String> inner = Lists.newArrayList(Arrays.asList(""));
-            resultList.add(inner);
-            return resultList;
+        if (i >= str.length) {
+            result.add(new ArrayList<>(path));
+            return;
         }
 
-        String current = str[index];
-        List<List<String>> nest = subsetAll2D(index + 1);
-        List<List<String>> notTake = Lists.newArrayList(nest);
+        String current = str[i];
+        List<String> withCurrentPath = new ArrayList<>(path);
+        withCurrentPath.add(current);
+
         //not to take
-        resultList.addAll(notTake);
-        //take
-        List<List<String>> take = new ArrayList<>();
-        for (List<String> ele : nest) {
-            List<String> collect = ele.stream().map(e -> e + current).collect(Collectors.toList());
-            take.add(collect);
-        }
-        resultList.addAll(take);
-
-        return resultList;
+        subsetAll2D(i + 1, path, result);
+        subsetAll2D(i + 1, withCurrentPath, result);
     }
 
-    private static List<List<String>> getAllSub(int index) {
-        if (index >=input.length()){
-            List<String> inner=new ArrayList<>(Arrays.asList(""));
-            List<List<String>> objects = Lists.newArrayList();
-//            List<List<String>> listOLists = new ArrayList<>();
-            objects.add(inner);
-            return objects;
-        }
-        List<List<String>> resultList = new ArrayList<List<String>>();
-
-
-        List<List<String>> sub = getAllSub(index + 1);
-        //not to take
-        List<List<String>> allSub = Lists.newArrayList(sub);
-
-        //take
-        String current = String.valueOf(input.charAt(index));
-        for (int i = 0; i < sub.size(); i++) {
-            if (!sub.isEmpty()) {
-                List<String> ele = sub.get(i);
-                List<String> collect = ele.stream().map(e -> e + current).collect(Collectors.toList());
-                sub.set(i, collect);
-            }
-        }
-
-        resultList.addAll(sub);
-        resultList.addAll(allSub);
-
-        return resultList;
-    }
 
     //letter combination
     private static List<List<String>> getAllSubTab(String input) {
