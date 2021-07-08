@@ -4,7 +4,6 @@ public class CuttingRod {
     public static void main(String[] args) {
         int profit[]={1,5,8,9,10,17,18};
         int max=cutRod(profit,7);
-
         dpCutRod(profit,7);
         System.out.println(max);
     }
