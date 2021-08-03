@@ -5,8 +5,8 @@ public class CompressString {
 //      Map<Character, Integer> collect = map.entrySet().stream().filter(a -> a.getValue().intValue() != 1).collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue()));
 //        char input[] = {'c','c','c','a','a','b','b'};
         char input[] = {'a','a','b','b','c','c','c'};
-        compress4(input);
     }
+
     public static int compressH(char[] chars) {
         int i = 0;
         int j = 1;

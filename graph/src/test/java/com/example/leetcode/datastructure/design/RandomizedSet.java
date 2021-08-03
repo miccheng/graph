@@ -22,7 +22,7 @@ public class RandomizedSet {
         return true;
     }
 
-    //***swap with last ele in the list and remove always the last ele
+    //***override the value with last ele in the list and remove the duplicate last ele
     public boolean remove(int val) {
         if (!map.containsKey(val)) return false;
         int index = map.get(val);

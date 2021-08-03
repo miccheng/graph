@@ -1,0 +1,13 @@
+1. !!!Tree + pointer
+    BST iterator
+    convert BST to a double liked list
+
+2. DFS:
+    base case: MinCostPathTree
+
+3. BST:
+   can used both method signature or global variable for tracking
+   > keep track of min and max
+   > keep track of min and move pointers
+   > use stack
+   > range query : exclude/include left/right branch. eg. range sum of BST, Closest Binary Search Tree Value

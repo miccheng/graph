@@ -1,4 +1,6 @@
-package com.example.leetcode.tree;
+package com.example.leetcode.datastructure;
+
+import com.example.leetcode.tree.TreeNode;
 
 import java.util.HashMap;
 

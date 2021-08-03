@@ -1,0 +1,14 @@
+1. Most graph problem can be solved with DFS/BFS
+2. Identify the problem is directed or undirected graph
+3. Tree is a specification of graph
+
+4. DFS/BFS traverse: eg. course schedule
+   >build graph: initialise the adjacent list with empty list and fill it with given int [][] prerequisite
+   >mark visiting node to detect cycle (method level parameter)
+   >will have to remove visiting when return
+   >track visited node to avoid traverse each node repeatedly (global at the whole graph level)
+
+
+
+
+

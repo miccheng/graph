@@ -1,9 +1,6 @@
 package com.example.leetcode.slidingwindow;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
 public class LongestSubstringNonRepeatingCharacter {
     String str="aaabebcdd";

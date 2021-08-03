@@ -1,15 +1,12 @@
 package com.example.leetcode.recursivedp;
 
-import java.util.ArrayList;
-import java.util.List;
-
+//The difference between LongestCommonSubsequence is that
+// when s1.charAt(i - 1) != s2.charAt(j - 1),levae dp[i][j]=0;
 public class LongestCommonSubstring {
     public static void main(String[] args) {
         divisorGame(5);
-        String s1 = "bc";
-        String s2 = "abcde";
-        LCS(s1, s2);
-
+        String s2 = "ABCDGH";
+        String s1 = "ACDGHR";
     }
 
     private static int LCS(String s1, String s2) {
@@ -25,6 +22,23 @@ public class LongestCommonSubstring {
         }
         return max;
     }
+
+    //recursive approach
+    public static int LCSubStrM1(char[] X, char[] Y, int m, int n, int lcsCount) {
+        if (m <= 0 || n <= 0)
+            return lcsCount;
+
+        int lcsCount1=lcsCount;
+        if (X[m - 1] == Y[n - 1])
+            lcsCount1 = LCSubStrM1(X, Y, m - 1, n - 1, lcsCount + 1);
+
+        int lcsCount2 = LCSubStrM1(X, Y, m, n - 1, 0);
+        int lcsCount3 = LCSubStrM1(X, Y, m - 1, n, 0);
+
+        return Math.max(lcsCount1, Math.max(lcsCount2, lcsCount3));
+    }
+
+
 
     public static boolean divisorGame(int n) {
         return recursive(n);
@@ -42,4 +56,5 @@ public class LongestCommonSubstring {
 
         return true;
     }
+
 }

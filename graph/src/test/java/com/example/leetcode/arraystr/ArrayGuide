@@ -1,0 +1,37 @@
+1. SubArray problems:
+   > sliding window
+   > variation of DP(Kadane's Algorithm)
+   > presum + map
+   > monotonic stack
+e.g. DP: Best time to buy and sell stock,Maximum sum subarray, Maximum product subarray
+% Must include current ele, look back and build relationship with the previous result
+% Each ele has 2choice: to be the starting of a new array, or to be part of the previous array
+
+2. presum --> initialise with 0
+   preproduct --> initialise with 1
+   subarray sum equals k (store previous presum, subtract
+   subarray sum is times of K(store previous presum%k)
+
+3. sorted array:
+     >2 pointers --> 2sorted array intersection/ merge
+     >binary search
+
+4. Given 2 array, combine them
+    > merge sort logic
+
+5. Subsequence: LIS
+    DP: compare with EACH previous result
+
+6. Iterate from both directions once
+   Product of Array Except Self, Botonic subsequence, Distribute Candy
+
+7. Process from the back
+   Next Greater Element III, Next permutation
+
+8. Circular array: wrap the index*2, eg, Next Greater Element II
+
+9.Binary search: identify the search range
+
+10.Point at left and right of the array and move accordingly at the same time
+
+

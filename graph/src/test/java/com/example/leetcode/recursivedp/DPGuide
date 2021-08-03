@@ -1,10 +1,10 @@
-1> variations: problems can be applied using dp
+1. variations: problems can be applied using dp
      knapsack problem
      robot grid
      decode ways
 
-2> use -, instead of + to avoid int overflow
-3> 1d array vs 2d array
+2. use -, instead of + to avoid int overflow
+3. 1d array vs 2d array
 NOT unique: 1d array
     1 --> 1 --> 1 --> 1 --> (0)
     1 --> 1 --> 2 --> (0)
@@ -13,7 +13,72 @@ NOT unique: 1d array
 Unique: 2d array
     2 --> 1 --> 1 --> (0)
 
-typical example: coin change problems vs count of comibinationIV
+typical example: coin change problems vs count of combinationIV
 
+4.DFS: be careful what to set for the initial value(0, Integer.MIN_VALUE) makes bug
+       e.g. 1: In russian doll envelopes
 
+        int layerMax=0; //Not Integer.MIN_VALUE
+        for(int i=start+1;i<len;i++){
+            if(envelopes[i][0]<envelopes[start][0]&&envelopes[i][1]<envelopes[start][1]){
+                layerMax=Math.max(layerMax, recursive(i,envelopes,len)+1);
+            }
+        }
 
+        return layerMax;
+
+        e.g. 2: In LIS
+
+        int take=0;
+        if(current>previous){
+            if(!map.containsKey(start)){
+                map.put(start,recursion(nums, len, start+1, current, map)+1);
+            }
+            take=map.get(start);
+        }
+
+5. Transform from DFS to dp in LIS problem
+
+   Step 1: int[] dp=new int[len];
+   Step 2: Arrays.fill(dp,1);
+   Step 3: Mind the condition within the for loop
+           for (int i = len - 1; i >= 0; i--) {
+               for (int j = i + 1; j < len; j++) {
+                   if (nums[j] > nums[i]) {
+                       dp[i] = Math.max(dp[i], dp[j] + 1);
+                   }
+               }
+           }
+
+6. Interleaving String problem on working backwards
+
+7. LCS: subsequence vs substring
+   substring: If s1.charAt(i - 1) != s2.charAt(j - 1) it has to set 0 to disconnect the previous common substring
+
+8. LPS:
+subsequence
+***  return dp[0][len - 1]; 1st row, last column
+***  row stands for the staring character, column stands for ending character
+
+>   1 way of thinking the problem: reverse the original string and find the LCS. That would be the LPS
+    Then it means, we are working on the same string from both front and back at the same time.
+    That is if char at beg and end match, we move both pointers, else try move i or move j.
+    So we start thinking shrinking the string to the middle and then expand its size.
+    We tackle the string from the back, starting the 1st character from the back and expand till the beg
+    We will be filling the table from bottom up and left right.
+
+>   The other way thinking about it is to shrink the length of the string. Instead of thinking the whole string,
+    we start thinking what is the palindrome of string with the length from (1,2,3...len).
+    Sliding window with expanding length from 1,2,3,4
+    In this case, we will be filling the dp tables diagonally.
+
+substring:
+> dp approach: take the shrink size approach
+    initialise the length==1 and length==2 grids first
+    filling the tables starting from length 3 with condition that char(i)==char(j)&&(dp[i+1][j-1]==1(1true, 0 false)||i+1>j-1)
+    return check the dp[i][j] with true and spans the widest.
+
+> while approach:
+   try each character as the middle point of the palindrome string and see how long it expands
+
+count palindrome substrings

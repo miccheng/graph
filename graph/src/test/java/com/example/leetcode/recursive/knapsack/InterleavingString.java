@@ -1,7 +1,12 @@
 package com.example.leetcode.recursive.knapsack;
 
 public class InterleavingString {
-
+    public static void main(String[] args) {
+        String s2="aabc";
+        String s1="abad";
+        String s3="aabcabad";
+        isInterleaveDp(s1,s2,s3);
+    }
     //either the character is having the choice of coming from s1 or s2
     public boolean isInterleave(String s1, String s2, String s3) {
         if(s1==null || s1.length()==0) return s2.equals(s3);
@@ -56,25 +61,20 @@ public class InterleavingString {
     //Think iterative. Transform to dp
     //Solution 2: Bottom up dp
     public static boolean isInterleaveDp(String s1, String s2, String s3) {
-        boolean dp[][] = new boolean[s1.length() + 1][s2.length() + 1];
-        dp[0][0] = true;
+        int len1=s1.length();
+        int len2=s2.length();
+        boolean dp[][] = new boolean[len1+1][len2+1];
+        boolean dpcopy[][] = new boolean[len1+1][len2+1];
 
-        for (int j = 1; j <= s2.length(); j++) {
-            dp[0][j] = dp[0][j - 1] && s2.charAt(j - 1) == s3.charAt(j - 1);
-        }
+        dp[len1][len2] = true;
+        dpcopy[len1][len2] = true;
 
-        for (int i = 1; i <= s1.length(); i++) {
-            dp[i][0] = dp[i - 1][0] && s1.charAt(i - 1) == s3.charAt(i - 1);
-        }
-
-        for (int i = 1; i <= s1.length(); i++) {
-            for (int j = 1; j <= s2.length(); j++) {
-                if (s1.charAt(i - 1) == s3.charAt(i + j - 1)) dp[i][j] = dp[i - 1][j];
-                if (s2.charAt(j - 1) == s3.charAt(i + j - 1)) dp[i][j] = dp[i][j] || dp[i][j - 1];
+        for (int i =len1 ; i >=0; i--) {
+            for (int j = len2; j >= 0; j--) {
+                if (i < len1 && s1.charAt(i) == s3.charAt(i + j)) dpcopy[i][j] =dpcopy[i + 1][j];
+                if (j < len2 && s2.charAt(j) == s3.charAt(i + j)) dpcopy[i][j] =dpcopy[i][j]||dpcopy[i][j + 1];
             }
         }
-
-        return dp[s1.length()][s2.length()];
+        return dpcopy[0][0];
     }
-
 }

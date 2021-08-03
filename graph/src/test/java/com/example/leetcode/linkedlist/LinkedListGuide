@@ -1,0 +1,23 @@
+1. Recursion or ieration
+2. Two Linked list
+   > merge sort logic
+
+3. Find length of linked list
+   >fast and slow pointer technique
+
+           while (fast != null && fast.next != null) {
+               slow = slow.next;
+               fast = fast.next.next;
+               if (slow == fast) return true;//check after move both pointers
+           }
+
+4. cut the linked list into half and half
+        while(p2.next!=null&&p2.next.next!=null){
+            p1=p1.next;
+            p2=p2.next.next;
+        }
+
+        ListNode start=p1.next;
+        p1.next=null;
+
+5. If modification on linked list, remember to disconnect nodes

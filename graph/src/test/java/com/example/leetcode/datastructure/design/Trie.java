@@ -37,6 +37,7 @@ public class Trie {
             if (current.children[c - 'a'] == null) return null;
             current = current.children[c - 'a'];
         }
+        //***must remember to set it!
         return current;
     }
 

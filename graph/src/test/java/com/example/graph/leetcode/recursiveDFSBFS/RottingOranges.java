@@ -1,4 +1,4 @@
-package com.example.leetcode.graph;
+package com.example.graph.leetcode.recursiveDFSBFS;
 
 import java.util.LinkedList;
 import java.util.Queue;

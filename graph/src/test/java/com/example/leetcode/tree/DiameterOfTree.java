@@ -5,9 +5,9 @@ public class DiameterOfTree {
     private int max=Integer.MIN_VALUE;
 
     public int diameterOfBinaryTree(TreeNode root) {
-        postOrder(root);
+        int length=postOrder(root);
         //***path is the number of the vertices connecting these nodes
-        return max;
+        return  Math.max(max,length);
     }
 
     private int postOrder(TreeNode root) {

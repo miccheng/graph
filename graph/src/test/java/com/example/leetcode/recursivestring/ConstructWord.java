@@ -54,23 +54,24 @@ public class ConstructWord {
     }
 
 
-    private static boolean canConstructTab(String target,String arr[]) {
-        int n = target.length();
-        boolean dp[] = new boolean[n + 1];
-        dp[0] = true;
-        for (int i = 0; i <= n; i++) {
-            if (dp[i] == true) {
-                String remainder = target.substring(i, target.length());
-                for (int j = 0; j < arr.length; j++) {
-                    int index = remainder.indexOf(arr[j]);
-//                    boolean b = target.substring(i, i + arr[j].length()).equals(arr[j]);
-                    if (index == 0) {
-                        dp[i + arr[j].length()] = true;
+    public boolean wordBreak(String s, List<String> wordDict) {
+        if(s==null|s.length()==0)return true;
+        int len=s.length();
+        boolean dp[]=new boolean[len+1];
+        dp[0]=true;
+
+        for(int i=0;i<=len;i++){
+            for(int j=0;j<wordDict.size();j++){
+                String word=wordDict.get(j);
+                if(dp[i]==true){
+                    if(s.startsWith(word,i)){
+                    //if(i+word.length()<=len&& s.substring(i,i+word.length().equals(word)){
+                        dp[i+word.length()]=true;
                     }
                 }
             }
         }
-        return dp[target.length()];
+        return dp[len];
     }
 
 

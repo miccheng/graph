@@ -5,38 +5,94 @@ public class FirstLastPositionofElementInSortedArray {
     public static void main(String args[]) {
         int target = 8;
         int arr[] = {5, 7, 7, 7, 8, 8, 8, 10};
-        findPositions(target, arr);
-        System.out.println();
     }
 
-    private static int[] findPositions(int target, int[] arr) {
-        int[] result = new int[2];
-        int left = 0;
-        int right = arr.length - 1;
-        //left most
-        while (left < right) {
-            int mid = left + (right - left) / 2;
-            if (arr[mid] < target) {
-                left = mid + 1;
-            } else {
-                right = mid;
+    //solution 1: plug in == and keep updating the index till left/right most
+    public int[] searchRange(int[] nums, int target) {
+        int firstIndex = findFirstEle(nums, target);
+        if (firstIndex == -1) return new int[]{-1, -1};
+
+        int lastIndex = findLastEle(nums, target, firstIndex);
+        return new int[]{firstIndex, lastIndex};
+    }
+
+    private int findFirstEle(int[] nums, int target){
+        int firstIndex=-1;
+        int left=0;
+        int right=nums.length-1;
+        while(left<=right){
+            int mid=left+(right-left)/2;
+            if(nums[mid]>=target){
+                if(nums[mid]==target) firstIndex=mid;
+                right=mid-1;
+            }else{
+                left=mid+1;
             }
         }
-        result[0] = left;
+        return firstIndex;
+    }
 
-        //right most
-        int start = 0;
-        int end = arr.length - 1;
-        while (start < end) {
-            int mid = start + (end - start) / 2;
-            if (arr[mid] <= target) {
-                start = mid + 1;
-            } else {
-                end = mid;
+    private int findLastEle(int[] nums, int target, int firstIndex ){
+        int lastIndex=firstIndex;
+        int left=firstIndex;
+        int right=nums.length-1;
+
+        while(left<=right){
+            int mid=left+(right-left)/2;
+            if(nums[mid]<=target){
+                if(nums[mid]==target) lastIndex=mid;
+                left=mid+1;
+            }else{
+                right=mid-1;
+            }
+        }
+        return lastIndex;
+    }
+
+    //solution 2:
+    public int[] searchRangeV2(int[] nums, int target) {
+        if(nums==null|| nums.length==0) return new int []{-1,-1};
+
+
+        int first=findLeftMost(nums, target);
+        //****must check whether it is out of bound and whether it equals to the target value
+        first=(first<nums.length&&nums[first]==target)?first:-1;
+
+        if(first==-1) return new int []{-1,-1};
+
+        int last=first;
+        last=findRightMost(first,nums, target);
+        return new int []{first,last};
+    }
+
+
+    private int findLeftMost(int[] nums, int target){
+        int left=0;
+        int right=nums.length-1;
+
+        while(left<=right){
+            int mid=left+(right-left)/2;
+            if(nums[mid]<target){
+                left=mid+1;
+            }else{//>=
+                right=mid-1;
             }
         }
 
-        result[1] = end - 1;
-        return result;
+        return left;
+    }
+
+    private int findRightMost(int first,int[] nums, int target){
+        int left=first;
+        int right=nums.length-1;
+        while(left<=right){
+            int mid=left+(right-left)/2;
+            if(nums[mid]<=target){
+                left=mid+1;
+            }else{
+                right=mid-1;
+            }
+        }
+        return right;
     }
 }

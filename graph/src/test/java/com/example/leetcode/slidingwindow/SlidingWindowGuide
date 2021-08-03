@@ -1,0 +1,3 @@
+1.i, j
+2.Advance i:
+  >if the sum of the current subarray i -> i is smaller than the target then the sum of i+1 -> i is necessarily smaller than the target. (positive values)

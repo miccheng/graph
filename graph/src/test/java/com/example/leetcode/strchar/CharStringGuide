@@ -1,0 +1,16 @@
+1. Hash each character in a string
+
+  >hash order: dic[c-'a']=i;
+            for(int i=0;i<dicLen;i++){
+                char c=order.charAt(i);
+                dic[c-'a']=i;
+            }
+  >hash frequency: count[c-'a']++;
+
+2. numeric value in string to integer:
+   String "123"--> str.charAt(i)-'0';
+   StringBuilder can append int, long. Don't have to convert to string to be able to appended to StringBuilder
+
+3. calculate how far the alphabet is and use that for hash key
+    group shifted strings
+

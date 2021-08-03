@@ -3,12 +3,6 @@ package com.example.leetcode.rotate;
 import java.util.Arrays;
 
 public class NextPermutation {
-    //[9,1,2,4,3,1,0]-->[9,1,3,0,1,2,4]
-    public static void main(String[] args) {
-//        int arr[]={9,1,2,4,3,1,0};
-        int arr[]={1,4,2,3};
-        findNextPermutation(arr);
-    }
 
     public static void findNextPermutation(int[] nums) {
         if (nums == null || nums.length <= 1) return;

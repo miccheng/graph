@@ -1,45 +1,40 @@
 package com.example.leetcode.twopointers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LongestPalindromeSubstring {
-    private static int lo, maxLen;
 
-    public static void main(String args[]){
-//        longestPalindrome("cbbd");
-//        longestPalindrome2("ac");
-//        findLongestPalindrome("racecar");
-//        findLongestPalindrome("abba");
-        findLongestPalindrome("babad");
+    //Solution 1: expand and update
+    private int max=1;
+    private int start=0;
+    private int end=0;
+
+    public String longestPalindromeV(String s) {
+        if(s.length()==1) return s;
+
+        for(int i=0;i<s.length();i++){
+            validatePalindrome(i,i,s);// long
+            validatePalindrome(i,i+1,s);//smaller
+        }
+
+        return s.substring (start,end+1);
     }
 
-    public static String findLongestPalindrome(String s) {
-        if (s == null || s.length() < 1) return "";
-        int len = 0;
-        int start = 0;
-        int end = 0;
-        for (int i = 0; i < s.length(); i++) {
-            int len1 = extendPalindrome(s, i, i);
-            int len2 = extendPalindrome(s, i, i + 1);
-            len = Math.max(len1, len2);
 
-            //***calculate index
-            if (len > end - start) {
-                start = i - ((len - 1) / 2);
-                end = i + len / 2;
+    public void validatePalindrome(int i,int j,String s){
+        while(i>=0&&j<s.length()&&s.charAt(i)==s.charAt(j)){
+            if(j-i+1>max){
+                max=Math.max(j-i+1,max);
+                start=i;
+                end=j;
             }
+            i--;
+            j++;
         }
-        return s.substring(start, end + 1);
     }
 
-    private static int extendPalindrome(String s, int left, int right) {
-        if (s == null || left > right) return 0;
-        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
-            left--;
-            right++;
-        }
-        int len = right - left - 1;
-        return len;
-    }
-
+    // Solutoion 2: using Dp
     public static String longestPalindrome2(String s) {
         if(s.length()==1) return s;
         int len=0;
@@ -63,6 +58,7 @@ public class LongestPalindromeSubstring {
         int end=len+start-1;
         return s.substring(start,end+1);
     }
+
     public static String longestPalindrome(String s) {
       int n = s.length();
       String res = null;

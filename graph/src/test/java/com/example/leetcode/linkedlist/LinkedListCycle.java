@@ -1,19 +1,26 @@
 package com.example.leetcode.linkedlist;
 
+import java.util.List;
+
 public class LinkedListCycle {
+    public static void main(String[] args) {
+        ListNode node2 = new ListNode(2);
+        ListNode node = new ListNode(1, node2);
+        hasCycle(node);
+    }
     //*** Application: find duplicate number in array
-    public boolean hasCycle(ListNode head) {
+    public static boolean hasCycle(ListNode head) {
         if (head == null) return false;
 
         ListNode slow = head;
         ListNode fast = head;
 
-        while (fast != null || fast.next != null) {
-            if (slow == fast) return false;
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
+            if (slow == fast) return true;//check after move both pointers
         }
-        return true;
+        return false;
 
 //        while (true) {
 //            tortoise = nums[tortoise];

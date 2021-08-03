@@ -1,4 +1,4 @@
-package com.example.leetcode.diagram;
+package com.example.leetcode.datastructure;
 
 public class MaxRectangle {
     public static void main(String args[]) {

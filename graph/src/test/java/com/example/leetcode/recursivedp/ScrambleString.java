@@ -1,4 +1,4 @@
-package com.example.leetcode.recursive.knapsack;
+package com.example.leetcode.recursivedp;
 
 //String character: groupAnagram problem, atoi. count letter frequency
 //Recursive:swap or not ===> take or not, knapsack,all subset of a string(power set)
@@ -17,7 +17,8 @@ public class ScrambleString {
         int len1 = s1.length(), len2 = s2.length();
         if (len1 != len2) return false;
         if (len1 == 0 ) return true;//??? special case
-        // pruning
+
+        // pruning: to get rid of unnecessary checking when s1 & s2 don't have the same alphabet frequency
         if (s1.equals(s2)) return true;
         int[] count = new int[256];
         for (int i = 0; i < len1; i++){
@@ -27,6 +28,8 @@ public class ScrambleString {
         for (int i = 0; i < len1; i++){
             if (count[s1.charAt(i)] != 0) return false;
         }
+
+
         for (int i = 1; i < len1; i++){
             if (isScramble(s1.substring(0, i), s2.substring(0, i)) && isScramble(s1.substring(i), s2.substring(i)))
                 return true;

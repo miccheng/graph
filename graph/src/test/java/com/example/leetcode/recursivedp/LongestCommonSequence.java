@@ -9,8 +9,8 @@ public class LongestCommonSequence {
         String text1 = "abcde";
         String text2 = "ace";
         longestCommonSubsequence(text1,text2);
-
-        Map<Integer, Integer> map=new HashMap<>();
+        String str1 = "a";
+        String str2 = "z";
     }
 
     public static int longestCommonSubsequence(String text1, String text2) {
@@ -29,4 +29,6 @@ public class LongestCommonSequence {
         }
         return dp[row][column];
     }
+
+
 }

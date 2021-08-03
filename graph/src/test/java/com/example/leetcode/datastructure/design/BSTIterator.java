@@ -7,58 +7,27 @@ import java.util.Deque;
 import java.util.Stack;
 
 public class BSTIterator {
-
-    Stack<TreeNode> stack;
-    TreeNode node;
+    Deque<TreeNode> toReadstack=new ArrayDeque<>();
 
     public BSTIterator(TreeNode root) {
-        stack = new Stack();
-        node = root;
+        pushAllLeft(root,toReadstack);
     }
 
-    /**
-     * @return whether we have a next smallest number
-     */
-    public boolean hasNext() {
-        return !stack.isEmpty() || node != null;
-    }
-
-    /**
-     * @return the next smallest number
-     */
     public int next() {
-        while (node != null) {
-            stack.push(node);
-            node = node.left;
-        }
-        node = stack.pop();
-        int res = node.val;
-        node = node.right;
-        return res;
+        TreeNode node=toReadstack.pop();
+        pushAllLeft(node.right,toReadstack);
+        return node.val;
     }
 
-//    private Deque<TreeNode> stack = new ArrayDeque<TreeNode>();
-//
-//    public BSTIterator(TreeNode root) {
-//        pushAll(root);
-//    }
-//
-//    /** @return whether we have a next smallest number */
-//    public boolean hasNext() {
-//        return !stack.isEmpty();
-//    }
-//
-//    /** @return the next smallest number */
-//    public int next() {
-//        TreeNode tmpNode = stack.pop();
-//        pushAll(tmpNode.right);
-//        return tmpNode.val;
-//    }
-//
-//    private void pushAll(TreeNode node) {
-//        while (node != null) {
-//            stack.push(node);
-//            node = node.left;
-//        }
-//    }
+    public boolean hasNext() {
+        return !toReadstack.isEmpty();
+    }
+
+    private void pushAllLeft(TreeNode root, Deque<TreeNode> toReadstack){
+        TreeNode current=root;
+        while(current!=null){
+            toReadstack.push(current);
+            current=current.left;
+        }
+    }
 }

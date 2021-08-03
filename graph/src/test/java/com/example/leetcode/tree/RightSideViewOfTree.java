@@ -5,29 +5,24 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class RightSideViewOfTree {
-    public static void main(String args[]) {
-
-    }
-
     //right view
    public static List<TreeNode> printRightView(TreeNode root ) {
-       List<TreeNode> leftNodes = new ArrayList<>();
-       if (root == null) return leftNodes;
+       List<TreeNode> result = new ArrayList<>();
+       if (root == null) return result;
 
        LinkedList<TreeNode> queue = new LinkedList<>();
        queue.add(root);
        while (!queue.isEmpty()) {
            int size = queue.size();
-           while (size > 0) {
-               if (size == 1) leftNodes.add(queue.peek());
-               TreeNode ele = queue.remove();
-               if (ele.left != null) queue.add(ele.left);
-               if (ele.right != null) queue.add(ele.right);
-               size--;
+           for (int i = 0; i < size; i++) {
+               TreeNode cur = queue.poll();
+               if (i == 0) result.add(cur);
+               if (cur.right != null) queue.offer(cur.right);
+               if (cur.left != null) queue.offer(cur.left);
            }
        }
 
-       return leftNodes;
+       return result;
    }
    //works 2
 //   while (!queue.isEmpty()) {

@@ -1,4 +1,4 @@
-package com.example.graph.leetcode.recursiveDFSBFS;
+package com.example.leetcode.tree;
 
 import com.example.leetcode.tree.TreeNode;
 

@@ -1,46 +1,70 @@
 package com.example.leetcode.tree;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+
 public class BoundaryTraversalOfBinaryTree {
 //    split the problem into 3 parts:
-//        1.travese left boundary
-//        2. all leaf nodes
-//        3.travese right boundary
+//        1.traverse left boundary (downwards) preorder
+//        2. all leaf nodes dfs
+//        3.traverse right boundary (upwards) postorder
 //      avoid duplicates: left and right boundary and the leaf nodes
 
-    public void boundaryTraverse(TreeNode root){
-        System.out.println(root);
+    public List<Integer> boundaryOfBinaryTree(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        result.add(root.val);
 
-        leftBoundary(root.left);
-        leafNodes(root);
-        rightBoundary(root.right);
+        if(isLeaf(root)) {
+            return result;
+        }
+
+        getLeftBoundary(root.left, result);
+        collectLeaves(root, result);
+
+        getRightBoundary(root.right, result);
+
+        return result;
     }
 
-    //top down print
-    public void leftBoundary(TreeNode root) {
-        while (root != null) {
-            if (isLeaf(root)) System.out.println(root);
-            root = (root.left == null) ? root.left : root.right;
+    private boolean isLeaf(TreeNode root) {
+        return root.left == null && root.right == null;
+    }
+
+    private void collectLeaves(TreeNode root,List<Integer> set) {
+        if (root == null) return;
+        if (isLeaf(root)) {
+            set.add(root.val);
+            return;
+        }
+
+        collectLeaves(root.left, set);
+        collectLeaves(root.right, set);
+    }
+
+    private void getLeftBoundary(TreeNode root, List<Integer> set) {
+        if (root == null) return;
+        if (!isLeaf(root)) {
+            set.add(root.val);
+        }
+        if (root.left != null) {
+            getLeftBoundary(root.left, set);
+        } else {
+            getLeftBoundary(root.right, set);
         }
     }
 
-    //inorder traversal fashion
-    public void leafNodes(TreeNode root) {
+    private void getRightBoundary(TreeNode root, List<Integer> set) {
         if (root == null) return;
-        leafNodes(root.left);
-        if (isLeaf(root)) System.out.println(root);
-        leafNodes(root.right);
-    }
 
-    //bottom up
-    public void rightBoundary(TreeNode root) {
-        if (root == null || isLeaf(root)) return; //overlapping of leaf node
-        rightBoundary((root.right != null) ? root.right : root.left);
-        // To ensure bottom-up order, print the value of the nodes after recursion unfolds
-        System.out.print(root);
-    }
-
-    //check whether it is left node
-    boolean isLeaf(TreeNode node) {
-        return node.left == null && node.right == null;
+        if (root.right != null) {
+            getRightBoundary(root.right, set);
+        } else {
+            getRightBoundary(root.left, set);
+        }
+        if (!isLeaf(root)) {
+            set.add(root.val);
+        }
     }
 }

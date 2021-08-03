@@ -23,11 +23,6 @@ public class TopKFrequentEle {
             counter++;
         }
 
-
-        TreeMap<Object, Object> treeMap = new TreeMap<>();
-        TreeMap<Integer, List<Integer>> map2=new TreeMap<>();
-        List<Integer> numbers= map2.pollLastEntry().getValue();
-
         return result;
     }
 

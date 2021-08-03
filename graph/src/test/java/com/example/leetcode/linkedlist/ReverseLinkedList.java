@@ -1,6 +1,6 @@
 package com.example.leetcode.linkedlist;
 
-public class RevertLinkedList {
+public class ReverseLinkedList {
     //solution 1:iterative
     public ListNode reverseList(ListNode head) {
         ListNode pre = null;
@@ -14,7 +14,7 @@ public class RevertLinkedList {
     }
 
     //solution 2: recursive
-    public ListNode reverseListRecurisve(ListNode head) {
+    public ListNode reverseListRecursive(ListNode head) {
         return reverse(head,null);
     }
 
@@ -25,4 +25,5 @@ public class RevertLinkedList {
         head.next = prev;
         return reverse(next, head);
     }
+
 }

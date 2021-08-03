@@ -1,4 +1,4 @@
-1. TreeMap: can't use Map to return
+1. TreeMap: can't use Map as return value, as it should be SortedMap
 TreeMap<Integer, List<Integer>> map2=new TreeMap<>();
 
 2. Whenever map needs to be sorted, use treeMap. Don't try to sort hashmap!!!
@@ -10,17 +10,27 @@ Queue<Map.Entry<Integer, Integer>> NOT PriorityQueue for generic reference.
                 List<Integer> tmp=new ArrayList<>();
                 treeMap.put(fre,tmp);
             }
+            map.putIfAbsent(key,new ArrayList<>());
             treeMap.get(fre).add(num);
 
+5. Range sum query:
+            <presum at the index, index>
+ceilingKey--> lowest key >=  the specified key.
+higherKey--> lowest key ONlY > the specified key
+
 5. Push item on the heap, then pop and return the smallest item from the heap. The combined action runs more efficiently than heappush() followed by a separate call to heappop().
-       min.offer(num);
-       max.offer(min.poll());
-       if(min.size() < max.size()){
-         min.offer(max.poll());
-       }
+   Have a balance between two heaps to improve performance,eg. MedianFinderDataStream.
+
+   //***always make lower has more ele, and their size never>1
+        lower.add(num);
+        higher.add(lower.poll());
+        if(lower.size()<higher.size()){
+            lower.add(higher.poll());
+        }
 
 6. heap push/pop is O(1)(root), remove is O(N); treeSet, add/remove are roughly O(logN)
-7.         Comparator<Integer> comparator = new Comparator<>(){
+7. Use integer compare if possible instead of subtract 2 numbers. Reason: might have Integer.MAX_VALUE+1<0
+        Comparator<Integer> comparator = new Comparator<>(){
                 public int compare(Integer a, Integer b) {
                    if (nums[a] != nums[b]) {
                        return Integer.compare(nums[a], nums[b]);
@@ -30,3 +40,38 @@ Queue<Map.Entry<Integer, Integer>> NOT PriorityQueue for generic reference.
                    }
                }
            };
+
+8. monotonic stack:
+>>look for next greater ele, previous less ele, next less ele
+>>identify boundary(where the left/right can extend to): largest histogram, sum of subarray minimums
+for duplicate number, usually push index
+
+    The typical paradigm for monotonous increase stack:
+    for(int i = 0; i < A.size(); i++){
+        while(!in_stk.empty() && in_stk.top() > A[i]){
+        in_stk.pop();
+    }
+        in_stk.push(A[i]);
+    }
+
+    Previous Smaller Ele: //Can traverse from the back and maintain an ascending stack
+    for(int i = A.size(); i >=0 ; i--){
+      while(!stack.empty() && A[stack.peek()] > A[i]){
+        previousSmaller[stack.pop()]=A[i];
+      }
+        stack.push(i);
+    }
+
+    Next Smaller Ele:
+    for(int i = 0; i < A.size(); i++){
+      while(!stack.empty() && A[stack.top()] > A[i]){
+        nextSmaller[stack.peek()] = i;
+        stack.pop();
+      }
+      stack.push(i);
+    }
+
+9. Medium stack problem:
+   1> construct-binary-tree-from-string
+   2> Basic calculator
+   3> decode string

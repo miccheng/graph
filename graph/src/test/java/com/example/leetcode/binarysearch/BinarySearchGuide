@@ -1,0 +1,8 @@
+11. Binary search
+    standard: while(left<=right)
+    why?
+    [left,right] means yet to be explored. If it is left<=right, the condition ends when [left,right)
+    or (left,right]. But if it is left<right,then the loop jumps out when [left==right], there will be
+    missing 1 element yet to be explored.
+
+2. Find pivot: while(left< right)
