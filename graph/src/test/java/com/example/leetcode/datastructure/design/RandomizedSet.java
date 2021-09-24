@@ -2,6 +2,7 @@ package com.example.leetcode.datastructure.design;
 
 import java.util.*;
 
+
 //Insert Delete GetRandom O(1)
 public class RandomizedSet {
     //***map.key=the actual value stored. The key is its index in the arrayList
@@ -23,9 +24,11 @@ public class RandomizedSet {
     }
 
     //***override the value with last ele in the list and remove the duplicate last ele
+    //1st, override; 2nd remove (only 1 ele scenario)
     public boolean remove(int val) {
         if (!map.containsKey(val)) return false;
         int index = map.get(val);
+
         int lastEle = list.get(list.size() - 1);
         list.set(index, lastEle);//***override the to be removed val
         list.remove(list.size() - 1);
@@ -39,4 +42,5 @@ public class RandomizedSet {
         int i = random.nextInt(list.size());//exclusive
         return list.get(i);
     }
+
 }

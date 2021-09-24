@@ -23,4 +23,37 @@ public class Sum3 {
         }
         return new ArrayList<>(set);
     }
+//  Solution2
+    public List<List<Integer>> threeSum2(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (nums == null || nums.length == 0) return result;
+        Arrays.sort(nums);
+
+        int len = nums.length;
+        for (int i = 0; i < len; i++) {
+            if (i == 0 || (i > 0 && nums[i] != nums[i - 1])) {
+                int sum = 0 - nums[i];
+                int p1 = i + 1;
+                int p2 = len - 1;
+                while (p1 < p2) {
+                    if (nums[p1] + nums[p2] == sum) {
+                        result.add(Arrays.asList(nums[i], nums[p1], nums[p2]));
+                        while (p1 < p2 && nums[p1] == nums[p1 + 1]) {
+                            p1++;
+                        }
+                        while (p1 < p2 && nums[p2] == nums[p2 - 1]) {
+                            p2--;
+                        }
+                        p1++;
+                        p2--;
+                    } else if (nums[p1] + nums[p2] < sum) {
+                        p1++;
+                    } else {
+                        p2--;
+                    }
+                }
+            }
+        }
+        return result;
+    }
 }

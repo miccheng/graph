@@ -4,109 +4,76 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class RottingOranges {
-    public static void main(String[] args) {
-        int[][] grid = {{2, 1, 1}, {1, 1, 0}, {0, 1, 1}};
-        orangesRotting(grid);
-    }
-
-    public int orangesRottingComprehensive(int[][] grid) {
-        if (grid.length == 0) return 0;
-        int min = 0;
-
-        Queue<rottenNode> que = new LinkedList<>();
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] == 2) {
-                    que.add(new rottenNode(i, j, 0));
+    public static int orangesRotting(int[][] grid) {
+        if (grid == null | grid.length == 0) return 0;
+        int row = grid.length;
+        int col = grid[0].length;
+        int count = 0;
+        int fresh = 0;
+        boolean[][] visited = new boolean[row][col];
+        LinkedList<int[]> queue = new LinkedList<>();
+        int[][] directions = new int[][]{{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (grid[i][j] == 1) {
+                    fresh++;
+                } else if (grid[i][j] == 2) {
+                    visited[i][j] = true;
+                    queue.add(new int[]{i, j});
                 }
             }
         }
-
-        while (!que.isEmpty()) {
-            rottenNode cur = que.remove();
-            min = cur.min;
-
-            if (cur.x > 0 && grid[cur.x - 1][cur.y] == 1) {
-                grid[cur.x - 1][cur.y] = 2;
-                que.add(new rottenNode(cur.x - 1, cur.y, cur.min + 1));
+        if (fresh == 0) return 0;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int top[] = queue.poll();
+                for (int[] dir : directions) {
+                    int nextRow = top[0] + dir[0];
+                    int nextCol = top[1] + dir[1];
+                    if (nextRow >= 0 && nextRow < row && nextCol >= 0 && nextCol < col && grid[nextRow][nextCol] == 1 && visited[nextRow][nextCol] == false) {
+                        visited[nextRow][nextCol] = true;
+                        fresh--;
+                        queue.add(new int[]{nextRow, nextCol});
+                    }
+                }
             }
-            if (cur.x < grid.length - 1 && grid[cur.x + 1][cur.y] == 1) {
-                grid[cur.x + 1][cur.y] = 2;
-                que.add(new rottenNode(cur.x + 1, cur.y, cur.min + 1));
-            }
-
-            if (cur.y > 0 && grid[cur.x][cur.y - 1] == 1) {
-                grid[cur.x][cur.y - 1] = 2;
-                que.add(new rottenNode(cur.x, cur.y - 1, cur.min + 1));
-            }
-            if (cur.y < grid[0].length - 1 && grid[cur.x][cur.y + 1] == 1) {
-                grid[cur.x][cur.y + 1] = 2;
-                que.add(new rottenNode(cur.x, cur.y + 1, cur.min + 1));
-            }
-
-        }
-
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] == 1) return -1;
-            }
-        }
-        return min;
-    }
-
-    class rottenNode {
-        int x, y;
-        int min;
-
-        public rottenNode(int x, int y, int min) {
-            this.x = x;
-            this.y = y;
-            this.min = min;
-        }
-    }
-
-    public static int orangesRotting(int[][] grid) {
-        LinkedList<int[]> rotten = new LinkedList<>();
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] == 2) rotten.add(new int[]{i, j});
-            }
-        }
-        int count = 0;
-        while (!rotten.isEmpty()) {
-            rotten = rotting(rotten, grid);
-            if (rotten.isEmpty()) break;
             count++;
         }
 
-        //last loop grid to see whether any fresh orange left
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] == 1) return -1;
-            }
-        }
-        return count;
+        return fresh == 0 ? count - 1 : -1;
     }
 
-    private static LinkedList<int[]> rotting(LinkedList<int[]> rotten, int[][] grid) {
-        LinkedList<int[]> temp = new LinkedList<>();
-        int[] pop = rotten.pop();
-        int i = pop[0];
-        int j = pop[1];
-        //go 4 directions
-        if ((i - 1 >= 0) && grid[i - 1][j] == 1)
-            grid[i - 1][j] = 2;
-        temp.add(new int[]{i - 1, j});
-        if ((i + 1 < grid.length) && grid[i + 1][j] == 1)
-            grid[i + 1][j] = 2;
-        temp.add(new int[]{i + 1, j});
-        if ((j - 1 >= 0) && grid[i][j - 1] == 1)
-            grid[i][j - 1] = 2;
-        temp.add(new int[]{i, j - 1});
-        if ((j + 1 < grid[0].length) && grid[i][j + 1] == 1)
-            grid[i][j + 1] = 2;
-        temp.add(new int[]{i, j + 1});
 
-        return temp;
-    }
+//    static boolean isMatch(String text, String pattern) {
+//        if(text.length()==0&&pattern.length()==0) return true;
+//        if(text==null||text.length()==0) return false;
+//        if(pattern==null||pattern.length()==0) return false;
+//        if(recursive(text, pattern, 0, 0)) return true;
+//        return false;
+//    }
+
+
+//    private static boolean recursive(String text, String pattern, int i, int j){
+//        if(i>=text.length()&&j>=pattern.length()) return true;
+//        if(i>=text.length()||j>=pattern.length()) return false;
+//
+//        if(text.charAt(i)==pattern.charAt(j)||pattern.charAt(j)=='.'){
+//            return recursive(text,pattern, i+1, j+1);
+//        }else if(text.charAt(i)!=pattern.charAt(j)){
+//            int lenP=pattern.length();
+//            if(pattern.charAt(j)=='*'){
+//                for(int q=i;q<text.length();q++){
+//                    if(recursive(text, pattern, q,j)) return true;
+//                }
+//
+//            }                  //"abbb", pattern = "ab*"
+//            else if(j<lenP && pattern.charAt(j+1)=='*'){//acd ab*c.
+//                return recursive(text,pattern, i, j+2);
+//            }else{//acd ab, acd abc
+//                return false;
+//            }
+//        }
+//        return false;
+//    }
 }

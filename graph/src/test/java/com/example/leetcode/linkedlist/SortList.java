@@ -1,5 +1,6 @@
 package com.example.leetcode.linkedlist;
 
+//***merge sort
 public class SortList {
     public static ListNode sortList(ListNode head) {
         if(head==null) return null;
@@ -11,7 +12,7 @@ public class SortList {
 
         ListNode p1=root;
         ListNode p2=root;
-        //check length>=3
+        //check length>=3, otherwise it loops forever
         while(p2.next!=null&&p2.next.next!=null){
             p1=p1.next;
             p2=p2.next.next;

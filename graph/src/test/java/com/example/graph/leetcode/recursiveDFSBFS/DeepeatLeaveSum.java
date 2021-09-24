@@ -10,7 +10,6 @@ public class DeepeatLeaveSum {
     public int deepestLeavesSum(TreeNode root) {
         recursive(root,0);
         return sum;
-
     }
 
     public void recursive(TreeNode root,int depth){

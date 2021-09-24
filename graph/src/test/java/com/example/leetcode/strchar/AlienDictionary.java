@@ -11,25 +11,32 @@ public class AlienDictionary {
     }
 
     public static boolean isAlienSorted(String[] words, String order) {
-        int[] alphabet =new int [26];
-        //super important !!!
-        for (int i = 0; i < order.length(); i++) {
-            alphabet[order.charAt(i)-'a']=i;
+        if (words == null || words.length == 0) return true;
+
+        int dict[] = new int[26];
+        int len = order.length();
+        for (int i = 0; i < len; i++) {
+            char c = order.charAt(i);
+            dict[c - 'a'] = i;
         }
 
-        for (int i = 0; i < words.length; i++) {
-            int j=i+1;
-
-            int len = Math.min(words[i].length(), words[j].length());
-            for (int k = 0; k < len; k++) {
-                int ci = words[i].charAt(k) - 'a';
-                int cj = words[j].charAt(j) - 'a';
-                if (alphabet[ci] > alphabet[cj]) return false;
-                if (k == len - 1 && words[i].length() > words[j].length()) return false;
-            }
-
+        int len2 = words.length;
+        for (int i = 0; i < len2 - 1; i++) {
+            String cur = words[i];
+            String next = words[i + 1];
+            if (!compareWord(cur, next, dict)) return false;
         }
 
         return true;
     }
+
+    private static boolean compareWord(String cur, String next, int dict[]) {
+        int minLen = Math.min(cur.length(), next.length());
+        for (int j = 0; j < minLen; j++) {
+            if (cur.charAt(j) != next.charAt(j)) return dict[cur.charAt(j) - 'a'] < dict[next.charAt(j) - 'a'];
+        }
+        if (cur.length() > next.length()) return false;
+        return true;
+    }
+
 }

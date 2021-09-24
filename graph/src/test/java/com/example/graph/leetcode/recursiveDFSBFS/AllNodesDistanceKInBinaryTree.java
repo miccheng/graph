@@ -6,11 +6,12 @@ import java.util.*;
 
 public class AllNodesDistanceKInBinaryTree {
     public static void main(String[] args) {
-        TreeNode node3 = new TreeNode(3);
-        TreeNode node2 = new TreeNode(2,null,node3);
-        TreeNode node1 = new TreeNode(1,null,node2);
-        TreeNode node0 = new TreeNode(0,null,node1);
-        distanceK(node0,node0,2);
+//        TreeNode node3 = new TreeNode(3);
+//        TreeNode node2 = new TreeNode(2,null,node3);
+//        TreeNode node1 = new TreeNode(1,null,node2);
+//        TreeNode node0 = new TreeNode(0,null,node1);
+        TreeNode node0 = new TreeNode(0,null,null);
+        distanceK(node0,node0,0);
     }
 
     private static List<Integer> result=new ArrayList<>();
@@ -19,12 +20,8 @@ public class AllNodesDistanceKInBinaryTree {
     public static List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
         if(root==null) return result;
 
-        if(root==target &&k==0) {
-            result.add(target.val);
-            return result;
-        }
         buildGraph(root);
-        BFS(map, target,k);
+        BFS(map,target,k);
         return result;
     }
 
@@ -71,4 +68,5 @@ public class AllNodesDistanceKInBinaryTree {
             layer++;
         }
     }
+
 }

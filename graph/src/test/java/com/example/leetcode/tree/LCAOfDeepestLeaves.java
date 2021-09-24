@@ -36,25 +36,25 @@ public class LCAOfDeepestLeaves {
         }
     }
 
-    //Solution2: Get Subtree Deepest Depth
-    int deepest = 0;
-    TreeNode lca;
+    //Solution2: Observation: when left and right both equals to the deepest level, the result node is updated
+    int maxLevel=0;
+    TreeNode lca=null;
 
-    public TreeNode lcaDeepestLeavesD(TreeNode root) {
-        helper(root, 0);
+    public TreeNode subtreeWithAllDeepest(TreeNode root) {
+        if(root==null) return null;
+        dfs(root,0);
         return lca;
     }
 
-    private int helper(TreeNode node, int depth) {
-        deepest = Math.max(deepest, depth);
-        if (node == null) {
-            return depth;
+    private int dfs(TreeNode root, int level){
+        if(root==null) return level;
+        int left=dfs(root.left, level+1);
+        int right=dfs(root.right, level+1);
+
+        maxLevel=Math.max(maxLevel, Math.max(left, right));
+        if(left==maxLevel&&right==maxLevel){
+            lca=root;
         }
-        int left = helper(node.left, depth + 1);
-        int right = helper(node.right, depth + 1);
-        if (left == deepest && right == deepest) {
-            lca = node;
-        }
-        return Math.max(left, right);
+        return Math.max(left,right);
     }
 }

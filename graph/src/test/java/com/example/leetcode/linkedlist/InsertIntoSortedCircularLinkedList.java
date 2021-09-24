@@ -5,6 +5,7 @@ import java.util.Set;
 
 public class InsertIntoSortedCircularLinkedList {
     public Node insert(Node head, int insertVal) {
+        //1 node has to connect to itself
         if (head == null) {
             Node node = new Node(insertVal, null);
             node.next = node;

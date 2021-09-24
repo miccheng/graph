@@ -13,58 +13,41 @@ public class BoundaryTraversalOfBinaryTree {
 //      avoid duplicates: left and right boundary and the leaf nodes
 
     public List<Integer> boundaryOfBinaryTree(TreeNode root) {
-        List<Integer> result = new ArrayList<>();
+        List<Integer> result=new ArrayList<>();
+        if(root==null) return result;
         result.add(root.val);
 
-        if(isLeaf(root)) {
-            return result;
-        }
-
-        getLeftBoundary(root.left, result);
-        collectLeaves(root, result);
-
-        getRightBoundary(root.right, result);
+        traverseLeft(root.left, result);
+        leaves(root.left, result);
+        leaves(root.right, result);
+        traverseRight(root.right, result);
 
         return result;
     }
 
-    private boolean isLeaf(TreeNode root) {
-        return root.left == null && root.right == null;
-    }
-
-    private void collectLeaves(TreeNode root,List<Integer> set) {
-        if (root == null) return;
-        if (isLeaf(root)) {
-            set.add(root.val);
+    public void leaves(TreeNode root, List<Integer> nodes) {
+        if(root == null) return;
+        if(root.left == null && root.right == null) {
+            nodes.add(root.val);
             return;
         }
-
-        collectLeaves(root.left, set);
-        collectLeaves(root.right, set);
+        leaves(root.left, nodes);
+        leaves(root.right, nodes);
     }
 
-    private void getLeftBoundary(TreeNode root, List<Integer> set) {
-        if (root == null) return;
-        if (!isLeaf(root)) {
-            set.add(root.val);
-        }
-        if (root.left != null) {
-            getLeftBoundary(root.left, set);
-        } else {
-            getLeftBoundary(root.right, set);
-        }
+    private void traverseLeft(TreeNode root, List<Integer> result){
+        if(root==null||(root.left==null&&root.right==null)) return;
+        result.add(root.val);
+        if(root.left!=null)
+            traverseLeft(root.left, result);
+        else traverseLeft(root.right, result);
     }
 
-    private void getRightBoundary(TreeNode root, List<Integer> set) {
-        if (root == null) return;
-
-        if (root.right != null) {
-            getRightBoundary(root.right, set);
-        } else {
-            getRightBoundary(root.left, set);
-        }
-        if (!isLeaf(root)) {
-            set.add(root.val);
-        }
+    private void traverseRight(TreeNode root,  List<Integer> nodes){
+        if(root == null || (root.right == null && root.left == null)) return;
+        if(root.right != null)
+            traverseRight(root.right,nodes);
+        else traverseRight(root.left, nodes);
+        nodes.add(root.val); // add after child visit(reverse)
     }
 }

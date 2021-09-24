@@ -12,7 +12,7 @@ public class Trie {
         Node current = root;
         for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
-            if (current.children[c - 'a'] == null) {
+            if (current.children[c - 'a'] == null) {//****must check before append
                 current.children[c - 'a'] = new Node(c);
             }
             current = current.children[c - 'a'];
@@ -21,24 +21,19 @@ public class Trie {
     }
 
     public boolean search(String word) {
-        Node node = getNode(word);
+        Node node = getNode(word, root,0);
         return node != null && node.isWord;
     }
 
     public boolean startsWith(String prefix) {
-        Node node = getNode(prefix);
+        Node node = getNode(prefix, root, 0);
         return node != null;
     }
 
-    private Node getNode(String word) {
-        Node current = root;
-        for (int i = 0; i < word.length(); i++) {
-            char c = word.charAt(i);
-            if (current.children[c - 'a'] == null) return null;
-            current = current.children[c - 'a'];
-        }
-        //***must remember to set it!
-        return current;
+    private Node getNode(String s,Node root, int start){
+        if(start==s.length()) return root;
+        if(root.children[s.charAt(start)-'a']==null) return null;
+        return getNode(s,root.children[s.charAt(start)-'a'],start+1);
     }
 
     class Node {

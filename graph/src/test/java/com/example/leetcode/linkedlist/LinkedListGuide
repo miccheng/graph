@@ -1,10 +1,14 @@
-1. Recursion or ieration
+1. Recursion or iteration
 2. Two Linked list
    > merge sort logic
 
-3. Find length of linked list
-   >fast and slow pointer technique
+3. use map to memorize node as there is no index to locate node at O(1)
+    >copy list with random pointer
+    >clone map
 
+3. Find length of linked list
+   >fast and slow pointer technique: both fast and slow starts at head
+           ListNode slow = head, fast = head;
            while (fast != null && fast.next != null) {
                slow = slow.next;
                fast = fast.next.next;
@@ -12,6 +16,14 @@
            }
 
 4. cut the linked list into half and half
+        //length can be 2
+        while (fast != null && fast.next != null) {
+            pre = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        //length>=3
         while(p2.next!=null&&p2.next.next!=null){
             p1=p1.next;
             p2=p2.next.next;
@@ -20,4 +32,5 @@
         ListNode start=p1.next;
         p1.next=null;
 
-5. If modification on linked list, remember to disconnect nodes
+5. remove node from list, use dummy head to avoid 1 node edge case
+6. If modification on linked list, remember to disconnect nodes

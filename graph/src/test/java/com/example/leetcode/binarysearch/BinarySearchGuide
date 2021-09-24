@@ -5,4 +5,39 @@
     or (left,right]. But if it is left<right,then the loop jumps out when [left==right], there will be
     missing 1 element yet to be explored.
 
-2. Find pivot: while(left< right)
+
+2. while(left< right) [)
+   while(left<=right) [], when adjusting , left=mid+1; right=mid-1;
+   if leftmost, return left; rightmost, return right
+
+3. find leftMost||minimal: must exist , return value is qualified
+   kokoEatingBanana(minimal) --> cuttingRibbon (maximal)
+   firstBadVersion
+   FirstAndLastElement: while(left<=right) left=mid+1; right=mid-1;&& record before move greedily
+
+   findKClosestElement
+   searchInsertPosition
+   Find pivot: while(left< right) left=mid+1; right=mid; post processing is not needed
+   Find peak element
+
+   post processing needed:
+   kthMissingPositive: while(left< right) left=mid+1; right=mid;
+   Missing Element in Sorted Array (the result could be >< k)
+
+       public int searchInsert(int[] nums, int target) {
+           if(nums==null||nums.length==0) return 0;
+           int len=nums.length;
+
+           int left=0;
+           int right=len-1;
+           while(left<right){
+               int mid=left+(right-left)/2;
+               if(nums[mid]<target){
+                   left=mid+1;
+               }else{
+                   right=mid;
+               }
+           }
+           if(nums[left]<target) return left+1;// have to check the last ele is smaller than target
+           return left;
+       }

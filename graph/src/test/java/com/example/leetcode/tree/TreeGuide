@@ -11,3 +11,24 @@
    > keep track of min and move pointers
    > use stack
    > range query : exclude/include left/right branch. eg. range sum of BST, Closest Binary Search Tree Value
+
+4. leaf node
+   > base condition
+   if(root==null)
+   if(root.left==null&&root.right==null)
+
+5. Pointer in tree
+   ConvertBST2SortedDoublyLinkedList
+   BSTIterator
+   Flatten Binary Tree to Linked List
+   PopulatingNextRightPointersInTree
+
+6. String 2 Tree problem
+   VerifyPreorderInBST
+   ConstructBSTFromPreorder
+   SerializeDeserializeBST
+   PopulatingNextRightPointersInTree
+
+7.post order
+  Delete Nodes And Return Forest
+  Smallest Subtree with all the Deepest Nodes

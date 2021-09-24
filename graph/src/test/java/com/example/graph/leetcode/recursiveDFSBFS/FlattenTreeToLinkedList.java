@@ -1,7 +1,8 @@
 package com.example.graph.leetcode.recursiveDFSBFS;
 
 import com.example.leetcode.tree.TreeNode;
-
+//Similar to moving the pointers on the node
+// and recursively construct linkedlist using recursive
 public class FlattenTreeToLinkedList {
     TreeNode prev = null;
 

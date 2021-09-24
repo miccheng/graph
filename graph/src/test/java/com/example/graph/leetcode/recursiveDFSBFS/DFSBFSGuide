@@ -8,7 +8,8 @@
    >will have to remove visiting when return
    >track visited node to avoid traverse each node repeatedly (global at the whole graph level)
 
-
+5. shortest path--> BFS
+   longest path-->DFS
 
 
 

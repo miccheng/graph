@@ -29,4 +29,14 @@ public class BinarySearch101 {
         }
         return nums[lo] == target ? lo : -1;
     };
+
+    //find leftmost minimal(include current)
+//    if(<=)
+//        right=mid
+//return left;
+
+    //find rightmost maximal(exclude current)
+//    if(<=)
+//        left=mid+1
+// return left-1;
 }

@@ -1,7 +1,6 @@
 package com.example.leetcode.binarysearch;
 
 public class SearchInRotatedArray {
-
     public static int search(int[] nums, int target) {
         int pivot=findPivot(nums);
         return search(pivot,nums, target);
@@ -31,7 +30,7 @@ public class SearchInRotatedArray {
         if(target>=nums[pivot]&& target<=nums[nums.length-1]){
             left=pivot;
         }else{
-            right=pivot;
+            right=pivot-1;
         }
 
         while(left<=right){

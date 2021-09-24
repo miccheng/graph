@@ -1,4 +1,4 @@
-package com.example.leetcode.rotate;
+package com.example.leetcode.greedy;
 
 import java.util.Arrays;
 

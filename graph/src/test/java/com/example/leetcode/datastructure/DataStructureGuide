@@ -3,33 +3,49 @@ TreeMap<Integer, List<Integer>> map2=new TreeMap<>();
 
 2. Whenever map needs to be sorted, use treeMap. Don't try to sort hashmap!!!
 
-3. Queue<Map.Entry<Integer, Integer>> heap = new PriorityQueue<>((a, b) -> b.getValue() - a.getValue());
-Queue<Map.Entry<Integer, Integer>> NOT PriorityQueue for generic reference.
+3. Hash frequency and then sort by frequency by throwing Map.Entry into Heap:
+        Map<Character,Integer> map = new HashMap<>();
+        for (char ch:tasks){
+            map.put(ch,map.getOrDefault(ch,0)+1);
+        }
 
-4.          if(!treeMap.containsKey(fre)){
+        Queue<Map.Entry<Character,Integer>> maxHeap = new PriorityQueue<>((a, b)->(b.getValue()-a.getValue()));
+        queue.addAll(map.entrySet());
+
+        *Queue<Map.Entry<Integer, Integer>> NOT PriorityQueue for generic reference.
+
+4. recursive parenthesis problems:
+    Construct Binary Tree from String
+    Construct String from Binary Tree
+    decode string
+
+
+
+5.          if(!treeMap.containsKey(fre)){
                 List<Integer> tmp=new ArrayList<>();
                 treeMap.put(fre,tmp);
             }
             map.putIfAbsent(key,new ArrayList<>());
             treeMap.get(fre).add(num);
 
-5. Range sum query:
+6. Range sum query:
             <presum at the index, index>
 ceilingKey--> lowest key >=  the specified key.
 higherKey--> lowest key ONlY > the specified key
 
-5. Push item on the heap, then pop and return the smallest item from the heap. The combined action runs more efficiently than heappush() followed by a separate call to heappop().
-   Have a balance between two heaps to improve performance,eg. MedianFinderDataStream.
+7. Medium stack problem:
+   use queue to keep check the ele, or manage index manually by using global variable
+   1> construct-binary-tree-from-string
+   2> Basic calculator
+   3> decode string
+   4> ConstructBSTFromPreorder
 
-   //***always make lower has more ele, and their size never>1
-        lower.add(num);
-        higher.add(lower.poll());
-        if(lower.size()<higher.size()){
-            lower.add(higher.poll());
-        }
+8. LinkedList used both as stack and queue
+   1> Tree problem. can add null
+   2> String problem. can pollLast. Return string in its original order
 
-6. heap push/pop is O(1)(root), remove is O(N); treeSet, add/remove are roughly O(logN)
-7. Use integer compare if possible instead of subtract 2 numbers. Reason: might have Integer.MAX_VALUE+1<0
+9. heap push/pop is O(1)(root), remove is O(N); treeSet, add/remove are roughly O(logN)
+10. Use integer compare if possible instead of subtract 2 numbers. Reason: might have Integer.MAX_VALUE+1<0
         Comparator<Integer> comparator = new Comparator<>(){
                 public int compare(Integer a, Integer b) {
                    if (nums[a] != nums[b]) {
@@ -41,7 +57,7 @@ higherKey--> lowest key ONlY > the specified key
                }
            };
 
-8. monotonic stack:
+11. monotonic stack:
 >>look for next greater ele, previous less ele, next less ele
 >>identify boundary(where the left/right can extend to): largest histogram, sum of subarray minimums
 for duplicate number, usually push index
@@ -71,7 +87,13 @@ for duplicate number, usually push index
       stack.push(i);
     }
 
-9. Medium stack problem:
-   1> construct-binary-tree-from-string
-   2> Basic calculator
-   3> decode string
+
+12. Push item on the heap, then pop and return the smallest item from the heap. The combined action runs more efficiently than heappush() followed by a separate call to heappop().
+   Have a balance between two heaps to improve performance,eg. MedianFinderDataStream.
+
+   //***always make lower has more ele, and their size never>1
+        lower.add(num);
+        higher.add(lower.poll());
+        if(lower.size()<higher.size()){
+            lower.add(higher.poll());
+        }

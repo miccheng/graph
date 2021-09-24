@@ -4,6 +4,7 @@ import com.example.leetcode.tree.TreeNode;
 
 import java.util.ArrayDeque;
 
+//can be done using recursive too
 public class ConstructBinaryTreeFromString {
     public TreeNode str2tree(String s) {
         if(s==null||s.length()==0) return null;
@@ -41,4 +42,6 @@ public class ConstructBinaryTreeFromString {
         }
         return stack.peek();
     }
+
+
 }

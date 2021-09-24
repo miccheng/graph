@@ -1,12 +1,12 @@
-package com.example.leetcode.arraystr;
+package com.example.leetcode.binarysearch;
 
 public class KthMissingPositive {
     public static void main(String[] args) {
-        int []nums={2,3,4,7,11};
-        findKthPositive(nums,5);
+        int []nums={1,2,3,4};
+        findKthPositive(nums,2);
     }
 
-    //find the nearest equal(leftmost) or greater value to k. ceiling values
+    //find the nearest equal(leftmost) or just greater value to k. ceiling values
     public static int findKthPositive(int[] arr, int k) {
         if(arr==null) return 0;
         if(k<arr[0]) return k;
@@ -14,15 +14,15 @@ public class KthMissingPositive {
         int left=0;
         int right=arr.length-1;
 
-        while(left<=right){
+        while(left<right){
             int mid=left + (right-left)/2;
             if(arr[mid]-(mid+1)<k){
                 left=mid+1;
             }else{//>=k
-                right=mid-1;
+                right=mid;
             }
         }
-
+        if(arr[left]-(left+1)<k) return left+1+k;//arr[left]+ k-(arr[left]-left-1);
         return left+k;
     }
 }

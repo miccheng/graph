@@ -39,3 +39,5 @@ public class MergeIntervals {
             return result.toArray(new int [0][0]);
         }
 }
+
+
