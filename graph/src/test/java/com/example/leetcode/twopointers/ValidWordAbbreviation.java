@@ -9,10 +9,11 @@ public class ValidWordAbbreviation {
         if (i == word.length() && j == abbr.length()) return true;
         if (i == word.length() || j == abbr.length()) return false;
 
-        if (word.charAt(i) != abbr.charAt(j))
-            return false;
-        else if (Character.isLetter(abbr.charAt(j))) {
-            return dfs(i + 1, j + 1, word, abbr);
+        if (Character.isLetter(abbr.charAt(j))) {
+            if(word.charAt(i) != abbr.charAt(j))
+                return false;
+            else
+                return dfs(i + 1, j + 1, word, abbr);
         } else {
             int count = 0;
             while (j < abbr.length() && Character.isDigit(abbr.charAt(j))) {

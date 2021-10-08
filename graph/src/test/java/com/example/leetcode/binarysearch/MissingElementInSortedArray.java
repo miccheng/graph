@@ -5,6 +5,7 @@ public class MissingElementInSortedArray {
         int nums[]={4,7,9,10};
 //        missingElement2(nums,1);
     }
+    //find the nearest value to k. 2 possibility: gap<k or gap>K
     public int missingElement(int[] nums, int k) {
         int base = nums[0];
         int left = 0;

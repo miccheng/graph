@@ -6,7 +6,7 @@ public class KthMissingPositive {
         findKthPositive(nums,2);
     }
 
-    //find the nearest equal(leftmost) or just greater value to k. ceiling values
+    //find the value just greater(equals) value to k. ceiling values
     public static int findKthPositive(int[] arr, int k) {
         if(arr==null) return 0;
         if(k<arr[0]) return k;

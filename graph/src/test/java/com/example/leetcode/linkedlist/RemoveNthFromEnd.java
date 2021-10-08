@@ -11,7 +11,7 @@ public class RemoveNthFromEnd {
     }
 
     //*** Key: To identify nth node, we use runners approach to maintain a gap of n between 2 pointers,
-    // but to deleted the Nth node, we need to keep track of one node ahead of it-->(n+1) node.
+    // but to delete the Nth node, we need to keep track of one node ahead of it-->(n+1) node.
     // so we will need to maintain a gap of (n+1)
     public static ListNode removeNthFromEnd(ListNode head, int n) {
         //use dummy head to avoid 1 node link list edge case

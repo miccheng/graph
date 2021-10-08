@@ -1,6 +1,7 @@
 package com.example.leetcode.math;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class RandomPickWeight {
     public static void main(String[] args) {

@@ -30,4 +30,35 @@ public class CuttingRibbons {
         }
         return result;
     }
+
+
+
+    public int maxLength2(int[] ribbons, int k) {
+        int max=-1;
+        for(int n:ribbons){
+            max=Math.max(n, max);
+        }
+
+        int left=1;
+        int right=max;
+
+        while(left<right){
+            int mid=left+(right-left)/2;
+            if(tryCut(mid, ribbons)<k){
+                right=mid;
+            }else{
+                left=mid+1;
+            }
+        }
+        if(tryCut(left, ribbons)==k) return left;
+        return left-1;
+    }
+
+    private int tryCut(int mid,int[] ribbons){
+        int count=0;
+        for(int n: ribbons){
+            count+=n/mid;
+        }
+        return count;
+    }
 }

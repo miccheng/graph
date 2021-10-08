@@ -50,11 +50,11 @@ public class AccountMerge {
     }
 
     public static void dfs(String cur, Map<String, List<String>> graph, List<String> connectedEmails, Set<String> visisted){
-        if(visisted.add(cur)) connectedEmails.add(cur);
+        connectedEmails.add(cur);
+
         List<String> neighbors=graph.get(cur);
         for(String nghb:neighbors){
             if(visisted.add(nghb)){
-                connectedEmails.add(nghb);
                 dfs(nghb,graph,connectedEmails,visisted);
             }
         }

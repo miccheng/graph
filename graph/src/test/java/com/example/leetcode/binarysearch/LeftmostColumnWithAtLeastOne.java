@@ -23,7 +23,7 @@ public class LeftmostColumnWithAtLeastOne {
                 int mid = left + (right - left) / 2;
                 if (binaryMatrix.get(i, mid) == 0) {// must lie in the right side
                     left = mid + 1;
-                } else {//could be itself or the right side
+                } else {//could be itself or the left side
                     right = mid;
                 }
             }

@@ -51,6 +51,7 @@ public class AllNodesDistanceKInBinaryTree {
         Set<TreeNode> visited = new HashSet<>();
         LinkedList<TreeNode> queue = new LinkedList<>();
         queue.add(target);
+        visited.add(target);
         int layer = 0;
         while (!queue.isEmpty() && layer <= k) {
             int size = queue.size();
@@ -60,9 +61,8 @@ public class AllNodesDistanceKInBinaryTree {
             }
             for (int i = 0; i < size; i++) {
                 TreeNode cur = queue.poll();
-                visited.add(cur);
                 for (TreeNode negibhor : map.get(cur)) {//must check whether it is visited
-                    if (!visited.contains(negibhor)) queue.add(negibhor);
+                    if (visited.add(negibhor)) queue.add(negibhor);
                 }
             }
             layer++;

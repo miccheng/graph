@@ -8,7 +8,6 @@ public class WordBreak {
     public static void main(String[] args) {
         String target="leetcode";
         List<String> words=Lists.newArrayList("leet","code");
-        recursive(target,words, new HashMap<String, Boolean>());
     }
 
     public boolean wordBreak(String s, List<String> wordDict) {
@@ -30,20 +29,23 @@ public class WordBreak {
         return dp[s.length()];
     }
 
-    static boolean recursive(String s, List<String> wordDict, Map<String,Boolean> map){
-        if(s==null) return false;
-        if("".equals(s)) return true;
 
-        if(map.containsKey(s)) return map.get(s);
-        for(String str : wordDict){
-            if(s.indexOf(str)==0){
-                if(recursive(s.substring(str.length()), wordDict,map)==true) {
-                    map.put(s,true);
+    //memorize which substring can be constructed . here [beg, len-1]
+    private boolean recursive(String s, List<String> wordDict, int beg, Map<Integer, Boolean> map ){
+        if(beg==s.length()) return true;
+        if(beg>s.length())  return false;
+        if(map.containsKey(beg)) return map.get(beg);
+
+        for(int i=0;i<wordDict.size();i++){
+            String cur=wordDict.get(i);
+            if(s.startsWith(cur, beg)){
+                if(recursive(s,wordDict, beg+cur.length(), map)) {
+                    map.put(beg, true);
                     return true;
                 }
             }
         }
-        map.put(s,false);
+        map.put(beg, false);
         return false;
     }
 }

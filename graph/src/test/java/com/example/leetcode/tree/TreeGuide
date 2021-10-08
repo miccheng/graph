@@ -32,3 +32,8 @@
 7.post order
   Delete Nodes And Return Forest
   Smallest Subtree with all the Deepest Nodes
+
+8. from string to BST:
+    construct the root first
+    serialize-and-deserialize-bst
+    constructBSTFromString

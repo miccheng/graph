@@ -1,5 +1,5 @@
 package com.example.leetcode.greedy;
-
+import java.util.*;
 //https://leetcode.com/problems/reorganize-string/
 public class ReorganizeString {
     public static String reorganizeString(String S) {
@@ -43,4 +43,40 @@ public class ReorganizeString {
         return String.valueOf(organized);
     }
 
+    //solution 2:
+    public String reorganizeString2(String s) {
+        if(s==null||s.length()==0) return s;
+        int len=s.length();
+
+        PriorityQueue<Map.Entry<Character, Integer>> heap=new PriorityQueue<>((a,b)->b.getValue()-a.getValue());
+        Map<Character, Integer> map=new HashMap<>();
+
+        for(char c: s.toCharArray()){
+            map.put(c, map.getOrDefault(c,0)+1);
+        }
+
+        for(Map.Entry<Character, Integer> e:map.entrySet()){
+            heap.add(e);
+        }
+
+        StringBuilder sb=new StringBuilder();
+        while(!heap.isEmpty()){
+            int n=2;
+            List<Map.Entry<Character, Integer>> tmp=new ArrayList<>();
+            while(n>0&&!heap.isEmpty()){
+                Map.Entry<Character, Integer> e=heap.poll();
+                sb.append(e.getKey());
+                int fre=e.getValue();
+                if(fre>1){
+                    e.setValue(fre-1);
+                    tmp.add(e);
+                }
+                n--;
+            }
+            if(n>0&&tmp.size()!=0) return "";
+            heap.addAll(tmp);
+        }
+
+        return sb.toString();
+    }
 }

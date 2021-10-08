@@ -1,0 +1,5 @@
+an unbounded, blocking
+FIFO
+does not support null items
+thread-safe
+override key value pair
