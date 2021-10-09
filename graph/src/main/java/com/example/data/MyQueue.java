@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class MyQueue<K,V> {
+public class MyQueue<K,V> implements ConflatingQueue<K, V> {
     private final ReentrantLock lock = new ReentrantLock();
     private final AtomicInteger count = new AtomicInteger();
 
@@ -27,10 +27,10 @@ public class MyQueue<K,V> {
     }
 
 
-
-//    @Override
-    public boolean offer(Node<KeyValue> node) throws InterruptedException {
-        if (node == null) throw new NullPointerException();
+    @Override
+    public boolean offer(KeyValue<K, V> keyValue) throws InterruptedException {
+        checkNotNull(keyValue);
+        Node node=new Node(keyValue);
         // Note: convention in all put/take/etc is to preset local var
         // holding count negative to indicate failure unless set.
         int c = -1;
@@ -49,10 +49,10 @@ public class MyQueue<K,V> {
             while (count.get() == capacity) {
                 notFull.await();
             }
-            K key=(K)node.item.getKey();
+            K key=keyValue.getKey();
             if(map.containsKey(key)){//update
                 Node<KeyValue> original = map.get(key);
-                original.item=node.item;
+                original.item=keyValue;
             }else{//write
                 enqueue(node);
             }
@@ -69,6 +69,8 @@ public class MyQueue<K,V> {
     }
 
 
+
+    @Override
     public KeyValue take() throws InterruptedException {
         KeyValue x;
         int c = -1;
@@ -92,7 +94,7 @@ public class MyQueue<K,V> {
         return x;
     }
 
-//    @Override
+    @Override
     public boolean isEmpty() {
         return size()==0;
     }
@@ -101,6 +103,10 @@ public class MyQueue<K,V> {
         return count.get();
     }
 
+    private void checkNotNull(Object v) {
+        if (v == null)
+            throw new NullPointerException();
+    }
 
     private void signalNotEmpty() {
         final ReentrantLock takeLock = this.lock;
