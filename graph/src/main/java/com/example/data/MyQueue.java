@@ -1,38 +1,40 @@
 package com.example.data;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class MyQueue<E> {
-    private final ReentrantLock putLock = new ReentrantLock();
+public class MyQueue<K,V> {
+    private final ReentrantLock lock = new ReentrantLock();
     private final AtomicInteger count = new AtomicInteger();
 
-    private final Condition notFull = putLock.newCondition();
+    private final Condition notFull = lock.newCondition();
+    private final Condition notEmpty = lock.newCondition();
+
     private final int capacity;
 
     transient Node<KeyValue> head;
     private transient Node<KeyValue> last;
+    private Map<K,Node<KeyValue>> map;
 
-
-    private final ReentrantLock takeLock = new ReentrantLock();
-    private final Condition notEmpty = takeLock.newCondition();
 
     public MyQueue() {
         this.capacity = Integer.MAX_VALUE;
         last = head = new Node<KeyValue>(null);
+        map=new HashMap<>();
     }
 
 
-//    public void offer(E node) {
-//    }
+
 //    @Override
     public boolean offer(Node<KeyValue> node) throws InterruptedException {
         if (node == null) throw new NullPointerException();
         // Note: convention in all put/take/etc is to preset local var
         // holding count negative to indicate failure unless set.
         int c = -1;
-        final ReentrantLock putLock = this.putLock;
+        final ReentrantLock putLock = this.lock;
         final AtomicInteger count = this.count;
         putLock.lockInterruptibly();
         try {
@@ -47,7 +49,14 @@ public class MyQueue<E> {
             while (count.get() == capacity) {
                 notFull.await();
             }
-            enqueue(node);
+            K key=(K)node.item.getKey();
+            if(map.containsKey(key)){//update
+                Node<KeyValue> original = map.get(key);
+                original.item=node.item;
+            }else{//write
+                enqueue(node);
+            }
+
             c = count.getAndIncrement();
             if (c + 1 < capacity)
                 notFull.signal();
@@ -59,18 +68,19 @@ public class MyQueue<E> {
         return true;
     }
 
-//    @Override
+
     public KeyValue take() throws InterruptedException {
         KeyValue x;
         int c = -1;
         final AtomicInteger count = this.count;
-        final ReentrantLock takeLock = this.takeLock;
+        final ReentrantLock takeLock = this.lock;
         takeLock.lockInterruptibly();
         try {
             while (count.get() == 0) {
                 notEmpty.await();
             }
             x = dequeue();
+            map.remove((K)x.getKey());
             c = count.getAndDecrement();
             if (c > 1)
                 notEmpty.signal();
@@ -91,21 +101,9 @@ public class MyQueue<E> {
         return count.get();
     }
 
-    void fullyLock() {
-        putLock.lock();
-        takeLock.lock();
-    }
-
-    /**
-     * Unlocks to allow both puts and takes.
-     */
-    void fullyUnlock() {
-        takeLock.unlock();
-        putLock.unlock();
-    }
 
     private void signalNotEmpty() {
-        final ReentrantLock takeLock = this.takeLock;
+        final ReentrantLock takeLock = this.lock;
         takeLock.lock();
         try {
             notEmpty.signal();
@@ -115,7 +113,7 @@ public class MyQueue<E> {
     }
 
     private void signalNotFull() {
-        final ReentrantLock putLock = this.putLock;
+        final ReentrantLock putLock = this.lock;
         putLock.lock();
         try {
             notFull.signal();
