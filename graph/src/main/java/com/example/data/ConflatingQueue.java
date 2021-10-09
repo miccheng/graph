@@ -8,7 +8,10 @@ package com.example.data;
      * A ConflatingQueue is thread-safe and supports multiple producers and multiple consumers.  Each item on the queue is made
      * available to at most one single consumer.
      *
-     * A ConflatingQueue would typically be used as an interface between a high frequency producer and low frequency consumer,
+     * A ConflatingQueue would typically be used as an interface between
+     *
+     *
+     *
      * where it is still meaningful to process the most recent value for each key. For example:
      *
      * 		The producer might be a market data feed handler connected to a high frequency cryptocurrency exchange that is
@@ -43,7 +46,7 @@ package com.example.data;
          * @return true if the key value item was successfully added to the queue, false otherwise
          * @throws NullPointerException if keyValue is null
          */
-        boolean offer(KeyValue<K, V> keyValue);
+        boolean offer(KeyValue<K, V> keyValue) throws InterruptedException;
 
         /**
          * Removes the first key value item in the queue, blocking if the queue is empty.
