@@ -55,6 +55,7 @@ public class MyQueue<K,V> implements ConflatingQueue<K, V> {
                 original.item=keyValue;
             }else{//write
                 enqueue(node);
+                map.put(key,node);
             }
 
             c = count.getAndIncrement();
