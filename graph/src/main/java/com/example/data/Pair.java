@@ -2,21 +2,19 @@ package com.example.data;
 
 public class Pair<K, V> implements KeyValue<K, V>{
     private String currency;
-    private String content;
-    public Pair(String symbol, String str){
-        currency=symbol;
-        this.content=str;
+    private String price;
+    public Pair(String currency, String price){
+        this.currency = currency;
+        this.price = price;
     }
 
     @Override
     public K getKey() {
-        return null;
+        return (K)this.currency;
     }
 
     @Override
     public V getValue() {
-        return null;
+        return (V)this.price;
     }
-
-
 }
