@@ -56,9 +56,9 @@ public class MyQueue<K,V> implements ConflatingQueue<K, V> {
             }else{//write
                 enqueue(node);
                 map.put(key,node);
+                c = count.getAndIncrement();
             }
 
-            c = count.getAndIncrement();
             if (c + 1 < capacity)
                 notFull.signal();
         } finally {

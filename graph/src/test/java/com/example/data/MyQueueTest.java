@@ -1,6 +1,7 @@
 package com.example.data;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class MyQueueTest {
@@ -19,7 +20,6 @@ public class MyQueueTest {
         try {
             myQueue.offer(item);
         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
             Assert.fail();
         }
 
@@ -38,7 +38,6 @@ public class MyQueueTest {
             Assert.assertEquals("Should now be empty", true, myQueue.isEmpty());
             Assert.assertEquals("Taken item should have correct value", "7000", kv.getValue());
         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
             Assert.fail();
         }
     }
@@ -59,18 +58,28 @@ public class MyQueueTest {
 
             KeyValue event1 = myQueue.take();
             KeyValue event2 = myQueue.take();
-            NullPointerException thrown = Assert.assertThrows(NullPointerException.class, () -> myQueue.take());
 
             Assert.assertEquals("Should be BTCUSD", "BTCUSD", event1.getKey());
             Assert.assertEquals("Should be new value 7002", "7002", event1.getValue());
             Assert.assertEquals("Should be ETHUSD", "ETHUSD", event2.getKey());
             Assert.assertEquals("Should be unchanged 250", "250", event2.getValue());
-            Assert.assertEquals("Should be null pointer", NullPointerException.class, thrown.getClass());
 
             Assert.assertEquals("Should now be empty", true, myQueue.isEmpty());
         } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
             Assert.fail();
+        }
+    }
+
+    @Test
+    @Ignore("Not testing as this causes blocking")
+    public void shouldBlockWhenQueueIsEmpty() {
+        MyQueue myQueue = new MyQueue();
+
+        try {
+            myQueue.take();
+            Assert.fail("Expected an InterruptedException to be thrown");
+        } catch (InterruptedException e) {
+
         }
     }
 }
